@@ -36,14 +36,14 @@ describe("Trip", () => {
     expect(trip2).to.be.an.instanceOf(Trip);
   });
 
-  it.only("should be able to store a trip id for multiple trips", () => {
+  it("should be able to store a trip id for multiple trips", () => {
     expect(trip1.id).to.equal(1);
     expect(trip2.id).to.equal(2);
   });
 
-  it("should be able to store a trip name for multiple travlers", () => {
-    expect(trip1.name).to.equal("Ham Leadbeater");
-    expect(trip2.name).to.equal("Rachael Vaughten");
+  it.only("should be able to store a user ID for multiple trips", () => {
+    expect(trip1.userID).to.equal(44);
+    expect(trip2.userID).to.equal(35);
   });
 
   it("should be able to store a trip type for multiple trips", () => {
