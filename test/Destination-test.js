@@ -39,7 +39,12 @@ describe("Destination", () => {
     expect(destination2.id).to.equal(2);
   });
 
-  it.only("should be able to store estimated lodging cost per day for multiple destinations", () => {
+  it.only("should be able to store a destination for multiple destinations", () => {
+    expect(destination1.destination).to.equal("Lima, Peru");
+    expect(destination2.destination).to.equal("Stockholm, Sweden");
+  });
+
+  it("should be able to store estimated lodging cost per day for multiple destinations", () => {
     expect(destination1.estimatedLodgingCostPerDay).to.equal(70);
     expect(destination2.estimatedLodgingCostPerDay).to.equal(100);
   });
