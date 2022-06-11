@@ -39,10 +39,17 @@ describe("Trip Repository", () => {
     expect(tripRepository).to.be.an.instanceof(TripRepository);
   });
 
-  it.only("should be able to determine trip data by id for multiple trips", () => {
+  it("should be able to determine trip data by id for multiple trips", () => {
     let determineTrip1 = tripRepository.findTripById(trip1.id);
     let determineTrip2 = tripRepository.findTripById(trip2.id);
     expect(determineTrip1).to.equal(trip1);
     expect(determineTrip2).to.equal(trip2);
+  });
+
+  it.only("should be able to filter all trips data by trip user id for multiple trips", () => {
+    let filterTrip1 = tripRepository.filterTripByUserId(trip1.userID);
+    let filterTrip2 = tripRepository.filterTripByUserId(trip2.userID);
+    expect(filterTrip1).to.deep.equal([trip1]);
+    expect(filterTrip2).to.deep.equal([trip2]);
   });
 });
