@@ -25,7 +25,7 @@ describe("Destination", () => {
     });
   });
 
-  it("should be a function", () => {
+  it.only("should be a function", () => {
     expect(Destination).to.be.a("function");
   });
 
@@ -69,7 +69,7 @@ describe("Destination", () => {
     expect(destination2.status).to.equal("approved");
   });
 
-  it.only("should be able to store the suggested activities for a destination", () => {
+  it("should be able to store the suggested activities for a destination", () => {
     expect(destination1.suggestedActivities).to.deep.equal([]);
     expect(destination2.suggestedActivities).to.deep.equal([]);
   });
