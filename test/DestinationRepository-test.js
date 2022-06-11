@@ -36,11 +36,11 @@ describe("Destination Repository", () => {
     expect(DestinationRepository).to.be.a("function");
   });
 
-  it.only("should be an instance of DestinationRepository", () => {
+  it("should be an instance of DestinationRepository", () => {
     expect(destinationRepository).to.be.an.instanceof(DestinationRepository);
   });
 
-  it("should be able to determine destination data by id for multiple destinations", () => {
+  it.only("should be able to determine destination data by id for multiple destinations", () => {
     let determineDestination1 = destinationRepository.findDestinationById(
       destination1.id
     );
