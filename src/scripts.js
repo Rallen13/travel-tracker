@@ -1,6 +1,12 @@
 // Imports
 import "normalize.css";
 import "./css/styles.css";
+import Traveler from "./Traveler";
+import TravelerRepository from "./TravelerRepository";
+import Trip from "./Trip";
+import TripRepository from "./TripRepository";
+import Destination from "./Destination";
+import DestinationRepository from "./DestinatinoRepository";
 import apiCalls from "./apiCalls";
 import "./images/hiking_black_24dp.svg";
 
