@@ -29,12 +29,12 @@ describe("Destination", () => {
     expect(Destination).to.be.a("function");
   });
 
-  it.only("should be able to instantiate multiple destinations", () => {
+  it("should be able to instantiate multiple destinations", () => {
     expect(destination1).to.be.an.instanceof(Destination);
     expect(destination2).to.be.an.instanceOf(Destination);
   });
 
-  it("should be able to store a destination id for multiple destinations", () => {
+  it.only("should be able to store a destination id for multiple destinations", () => {
     expect(destination1.id).to.equal(1);
     expect(destination2.id).to.equal(2);
   });
