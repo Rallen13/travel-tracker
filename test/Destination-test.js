@@ -39,7 +39,7 @@ describe("Destination", () => {
     expect(destination2.id).to.equal(2);
   });
 
-  it.only("should be able to store a destination for multiple destinations", () => {
+  it("should be able to store a destination for multiple destinations", () => {
     expect(destination1.destination).to.equal("Lima, Peru");
     expect(destination2.destination).to.equal("Stockholm, Sweden");
   });
@@ -49,9 +49,9 @@ describe("Destination", () => {
     expect(destination2.estimatedLodgingCostPerDay).to.equal(100);
   });
 
-  it("should be able to store a destination ID for multiple destinations", () => {
-    expect(destination1.destinationID).to.equal(49);
-    expect(destination2.destinationID).to.equal(25);
+  it.only("should be able to store estimated flight cost per person for multiple destinations", () => {
+    expect(destination1.estimatedFlightCostPerPerson).to.equal(400);
+    expect(destination2.estimatedFlightCostPerPerson).to.equal(780);
   });
 
   it("should be able to store number of travelers for a destination", () => {
