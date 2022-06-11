@@ -32,11 +32,11 @@ describe("Destination Repository", () => {
     ]);
   });
 
-  it.only("should be a function", function() {
+  it("should be a function", function() {
     expect(DestinationRepository).to.be.a("function");
   });
 
-  it("should be an instance of DestinationRepository", () => {
+  it.only("should be an instance of DestinationRepository", () => {
     expect(destinationRepository).to.be.an.instanceof(DestinationRepository);
   });
 
