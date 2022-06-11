@@ -25,17 +25,14 @@ describe("Traveler Repository", () => {
     expect(TravelerRepository).to.be.a("function");
   });
 
-  it.only("should be an instance of TravelerRepository", () => {
+  it("should be an instance of TravelerRepository", () => {
     expect(travelerRepository).to.be.an.instanceof(TravelerRepository);
   });
 
-  it("should be able to determine traveler data by ID", () => {
-    let determineTraveler = travelerRepository.findTraveler(traveler2.id);
-    expect(determineTraveler).to.equal(traveler2);
-  });
-
-  it("should be able to capture the average step goal of the travelers ", () => {
-    let averageSteps = travelerRepository.calculateAvgStepGoal();
-    expect(averageSteps).to.equal(6500);
+  it.only("should be able to determine traveler data by id for multiple travelers", () => {
+    let determineTraveler1 = travelerRepository.findTraveler(traveler1.id);
+    let determineTraveler2 = travelerRepository.findTraveler(traveler2.id);
+    expect(determineTraveler1).to.equal(traveler1);
+    expect(determineTraveler2).to.equal(traveler2);
   });
 });
