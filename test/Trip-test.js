@@ -56,8 +56,13 @@ describe("Trip", () => {
     expect(trip2.travelers).to.equal(5);
   });
 
-  it.only("should be able to store the date for a trip", () => {
+  it("should be able to store the date for a trip", () => {
     expect(trip1.date).to.equal("2022/09/16");
     expect(trip2.date).to.equal("2022/10/04");
+  });
+
+  it.only("should be able to store the duration for a trip", () => {
+    expect(trip1.duration).to.equal(8);
+    expect(trip2.duration).to.equal(18);
   });
 });
