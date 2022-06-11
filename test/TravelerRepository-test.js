@@ -30,8 +30,8 @@ describe("Traveler Repository", () => {
   });
 
   it("should be able to determine traveler data by id for multiple travelers", () => {
-    let determineTraveler1 = travelerRepository.findTraveler(traveler1.id);
-    let determineTraveler2 = travelerRepository.findTraveler(traveler2.id);
+    let determineTraveler1 = travelerRepository.findTravelerById(traveler1.id);
+    let determineTraveler2 = travelerRepository.findTravelerById(traveler2.id);
     expect(determineTraveler1).to.equal(traveler1);
     expect(determineTraveler2).to.equal(traveler2);
   });

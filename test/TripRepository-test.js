@@ -46,7 +46,7 @@ describe("Trip Repository", () => {
     expect(determineTrip2).to.equal(trip2);
   });
 
-  it.only("should be able to filter all trips data by trip user id for multiple trips", () => {
+  it("should be able to filter all trips data by trip user id for multiple trips", () => {
     let filterTrip1 = tripRepository.filterTripByUserId(trip1.userID);
     let filterTrip2 = tripRepository.filterTripByUserId(trip2.userID);
     expect(filterTrip1).to.deep.equal([trip1]);
