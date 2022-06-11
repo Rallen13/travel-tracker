@@ -63,7 +63,7 @@ describe("Destination", () => {
     );
   });
 
-  it.only("should be able to store the alt text for an image for a destination for multiple destinations", () => {
+  it("should be able to store the alt text for an image for a destination for multiple destinations", () => {
     expect(destination1.alt).to.equal(
       "overview of city buildings with a clear sky"
     );
