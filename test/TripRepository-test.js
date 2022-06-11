@@ -35,13 +35,13 @@ describe("Trip Repository", () => {
     expect(TripRepository).to.be.a("function");
   });
 
-  it.only("should be an instance of TripRepository", () => {
+  it("should be an instance of TripRepository", () => {
     expect(tripRepository).to.be.an.instanceof(TripRepository);
   });
 
-  it("should be able to determine trip data by id for multiple trips", () => {
-    let determineTrip1 = tripRepository.findTrip(trip1.id);
-    let determineTrip2 = tripRepository.findTrip(trip2.id);
+  it.only("should be able to determine trip data by id for multiple trips", () => {
+    let determineTrip1 = tripRepository.findTripById(trip1.id);
+    let determineTrip2 = tripRepository.findTripById(trip2.id);
     expect(determineTrip1).to.equal(trip1);
     expect(determineTrip2).to.equal(trip2);
   });
