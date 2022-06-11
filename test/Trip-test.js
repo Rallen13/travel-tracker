@@ -46,15 +46,13 @@ describe("Trip", () => {
     expect(trip2.userID).to.equal(35);
   });
 
-  it.only("should be able to store a destination ID for multiple trips", () => {
+  it("should be able to store a destination ID for multiple trips", () => {
     expect(trip1.destinationID).to.equal(49);
     expect(trip2.destinationID).to.equal(25);
   });
 
-  it("should be able to return only the first name for multiple trips", () => {
-    const firstName1 = trip1.getFirstName();
-    const firstName2 = trip2.getFirstName();
-    expect(firstName1).to.equal("Ham");
-    expect(firstName2).to.equal("Rachael");
+  it.only("should be able to store number of travelers for a trip", () => {
+    expect(trip1.travelers).to.equal(1);
+    expect(trip2.travelers).to.equal(5);
   });
 });
