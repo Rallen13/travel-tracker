@@ -6,7 +6,7 @@ import TravelerRepository from "./TravelerRepository";
 import Trip from "./Trip";
 import TripRepository from "./TripRepository";
 import Destination from "./Destination";
-import DestinationRepository from "./DestinatinoRepository";
+import DestinationRepository from "./DestinationRepository";
 import apiCalls from "./apiCalls";
 import "./images/hiking_black_24dp.svg";
 
@@ -19,6 +19,7 @@ console.log("This is the JavaScript entry file - your code begins here.");
 // Class Instances
 
 //Global Variables
+let travelerRepo;
 
 // Functions
 const getRandomIndex = array => {
@@ -28,6 +29,11 @@ const getRandomIndex = array => {
 const fetchApiCalls = userID => {
   apiCalls.fetchData().then(data => {
     console.log(data);
+    let travelerData = data[0].travelers;
+    let tripData = data[1].trips;
+    let destinationsData = data[2].destinations;
+    travelerRepo = new TravelerRepository(travelerData);
+    console.log(travelerRepo);
   });
 };
 

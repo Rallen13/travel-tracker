@@ -1,7 +1,15 @@
+import Trip from "./Trip";
+
 class TripRepository {
   constructor(data) {
-    this.data = data;
+    this.data = this.mapTripData(data);
   }
+
+  mapTripData = data => {
+    return data.map(trip => {
+      return new Trip(trip);
+    });
+  };
 
   findTripById = id => {
     return this.data.find(trip => {
