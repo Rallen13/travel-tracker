@@ -1,11 +1,14 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
+import "./css/styles.css";
+import apiCalls from "./apiCalls";
+import "./images/turing-logo.png";
 
-// An example of how you tell webpack to use a CSS (SCSS) file
-import './css/styles.css';
+console.log("This is the JavaScript entry file - your code begins here.");
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+const fetchApiCalls = userID => {
+  apiCalls.fetchData().then(data => {
+    console.log(data);
+  });
+};
 
-
-console.log('This is the JavaScript entry file - your code begins here.');
+// Event Listeners
+window.addEventListener("load", fetchApiCalls);
