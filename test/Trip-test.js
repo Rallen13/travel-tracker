@@ -31,12 +31,12 @@ describe("Trip", () => {
     expect(Trip).to.be.a("function");
   });
 
-  it.only("should be able to instantiate multiple trips", () => {
+  it("should be able to instantiate multiple trips", () => {
     expect(trip1).to.be.an.instanceof(Trip);
     expect(trip2).to.be.an.instanceOf(Trip);
   });
 
-  it("should be able to store a trip id for multiple trips", () => {
+  it.only("should be able to store a trip id for multiple trips", () => {
     expect(trip1.id).to.equal(1);
     expect(trip2.id).to.equal(2);
   });
