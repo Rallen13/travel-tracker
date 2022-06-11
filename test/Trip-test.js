@@ -61,8 +61,13 @@ describe("Trip", () => {
     expect(trip2.date).to.equal("2022/10/04");
   });
 
-  it.only("should be able to store the duration for a trip", () => {
+  it("should be able to store the duration for a trip", () => {
     expect(trip1.duration).to.equal(8);
     expect(trip2.duration).to.equal(18);
+  });
+
+  it.only("should be able to store the status for a trip", () => {
+    expect(trip1.status).to.equal("approved");
+    expect(trip2.status).to.equal("approved");
   });
 });
