@@ -27,7 +27,7 @@ describe("Trip", () => {
     });
   });
 
-  it("should be a function", () => {
+  it.only("should be a function", () => {
     expect(Trip).to.be.a("function");
   });
 
@@ -51,7 +51,7 @@ describe("Trip", () => {
     expect(trip2.tripType).to.equal("thrill-seeker");
   });
 
-  it.only("should be able to return only the first name for multiple trips", () => {
+  it("should be able to return only the first name for multiple trips", () => {
     const firstName1 = trip1.getFirstName();
     const firstName2 = trip2.getFirstName();
     expect(firstName1).to.equal("Ham");
