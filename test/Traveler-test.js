@@ -17,18 +17,18 @@ describe("Traveler", () => {
     });
   });
 
-  it.skip("should be a function", () => {
+  it("should be a function", () => {
     expect(Traveler).to.be.a("function");
   });
 
-  it.only("should be able to instantiate multiple users", () => {
+  it("should be able to instantiate multiple users", () => {
     expect(traveler1).to.be.an.instanceof(Traveler);
     expect(traveler2).to.be.an.instanceOf(Traveler);
   });
 
-  it("should be able to store a user id for multiple users", () => {
+  it.only("should be able to store a user id for multiple users", () => {
     expect(traveler1.id).to.equal(1);
-    expect(traveler2.id).to.equal(7);
+    expect(traveler2.id).to.equal(2);
   });
 
   it("should be able to store a user name for multiple users", () => {
