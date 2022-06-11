@@ -29,7 +29,7 @@ describe("Traveler Repository", () => {
     expect(travelerRepository).to.be.an.instanceof(TravelerRepository);
   });
 
-  it.only("should be able to determine traveler data by id for multiple travelers", () => {
+  it("should be able to determine traveler data by id for multiple travelers", () => {
     let determineTraveler1 = travelerRepository.findTraveler(traveler1.id);
     let determineTraveler2 = travelerRepository.findTraveler(traveler2.id);
     expect(determineTraveler1).to.equal(traveler1);
