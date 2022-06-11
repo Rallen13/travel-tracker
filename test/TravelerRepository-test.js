@@ -21,11 +21,11 @@ describe("Traveler Repository", () => {
     travelerRepository = new TravelerRepository([traveler1, traveler2]);
   });
 
-  it.only("should be a function", function() {
+  it("should be a function", function() {
     expect(TravelerRepository).to.be.a("function");
   });
 
-  it("should be an instance of TravelerRepository", () => {
+  it.only("should be an instance of TravelerRepository", () => {
     expect(travelerRepository).to.be.an.instanceof(TravelerRepository);
   });
 
