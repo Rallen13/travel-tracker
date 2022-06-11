@@ -34,14 +34,14 @@ describe("Destination", () => {
     expect(destination2).to.be.an.instanceOf(Destination);
   });
 
-  it.only("should be able to store a destination id for multiple destinations", () => {
+  it("should be able to store a destination id for multiple destinations", () => {
     expect(destination1.id).to.equal(1);
     expect(destination2.id).to.equal(2);
   });
 
-  it("should be able to store a user ID for multiple destinations", () => {
-    expect(destination1.userID).to.equal(44);
-    expect(destination2.userID).to.equal(35);
+  it.only("should be able to store estimated lodging cost per day for multiple destinations", () => {
+    expect(destination1.estimatedLodgingCostPerDay).to.equal(70);
+    expect(destination2.estimatedLodgingCostPerDay).to.equal(100);
   });
 
   it("should be able to store a destination ID for multiple destinations", () => {
