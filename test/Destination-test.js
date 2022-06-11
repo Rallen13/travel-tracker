@@ -49,14 +49,18 @@ describe("Destination", () => {
     expect(destination2.estimatedLodgingCostPerDay).to.equal(100);
   });
 
-  it.only("should be able to store estimated flight cost per person for multiple destinations", () => {
+  it("should be able to store estimated flight cost per person for multiple destinations", () => {
     expect(destination1.estimatedFlightCostPerPerson).to.equal(400);
     expect(destination2.estimatedFlightCostPerPerson).to.equal(780);
   });
 
-  it("should be able to store number of travelers for a destination", () => {
-    expect(destination1.travelers).to.equal(1);
-    expect(destination2.travelers).to.equal(5);
+  it.only("should be able to store an image for a destination for multiple destinations", () => {
+    expect(destination1.image).to.equal(
+      "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"
+    );
+    expect(destination2.image).to.equal(
+      "https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+    );
   });
 
   it("should be able to store the date for a destination", () => {

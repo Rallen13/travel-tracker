@@ -51,27 +51,27 @@ describe("Trip", () => {
     expect(trip2.destinationID).to.equal(25);
   });
 
-  it("should be able to store number of travelers for a trip", () => {
+  it("should be able to store number of travelers for a trip for multiple trips", () => {
     expect(trip1.travelers).to.equal(1);
     expect(trip2.travelers).to.equal(5);
   });
 
-  it("should be able to store the date for a trip", () => {
+  it("should be able to store the date for a trip for multiple trips", () => {
     expect(trip1.date).to.equal("2022/09/16");
     expect(trip2.date).to.equal("2022/10/04");
   });
 
-  it("should be able to store the duration for a trip", () => {
+  it("should be able to store the duration for a trip for multiple trips", () => {
     expect(trip1.duration).to.equal(8);
     expect(trip2.duration).to.equal(18);
   });
 
-  it("should be able to store the status for a trip", () => {
+  it("should be able to store the status for a trip for multiple trips", () => {
     expect(trip1.status).to.equal("approved");
     expect(trip2.status).to.equal("approved");
   });
 
-  it("should be able to store the suggested activities for a trip", () => {
+  it("should be able to store the suggested activities for a trip for multiple trips", () => {
     expect(trip1.suggestedActivities).to.deep.equal([]);
     expect(trip2.suggestedActivities).to.deep.equal([]);
   });
