@@ -3,9 +3,7 @@ import "normalize.css";
 import "./css/styles.css";
 import Traveler from "./Traveler";
 import TravelerRepository from "./TravelerRepository";
-import Trip from "./Trip";
 import TripRepository from "./TripRepository";
-import Destination from "./Destination";
 import DestinationRepository from "./DestinationRepository";
 import apiCalls from "./apiCalls";
 import "./images/hiking_black_24dp.svg";
@@ -19,7 +17,7 @@ console.log("This is the JavaScript entry file - your code begins here.");
 // Class Instances
 
 //Global Variables
-let travelerRepo;
+let travelerRepo, tripRepo, destinationRepo;
 
 // Functions
 const getRandomIndex = array => {
@@ -31,9 +29,13 @@ const fetchApiCalls = userID => {
     console.log(data);
     let travelerData = data[0].travelers;
     let tripData = data[1].trips;
-    let destinationsData = data[2].destinations;
+    let destinationData = data[2].destinations;
     travelerRepo = new TravelerRepository(travelerData);
+    tripRepo = new TripRepository(tripData);
+    destinationRepo = new DestinationRepository(destinationData);
     console.log(travelerRepo);
+    console.log(tripRepo);
+    console.log(destinationRepo);
   });
 };
 
