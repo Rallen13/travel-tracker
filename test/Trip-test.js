@@ -66,8 +66,13 @@ describe("Trip", () => {
     expect(trip2.duration).to.equal(18);
   });
 
-  it.only("should be able to store the status for a trip", () => {
+  it("should be able to store the status for a trip", () => {
     expect(trip1.status).to.equal("approved");
     expect(trip2.status).to.equal("approved");
+  });
+
+  it.only("should be able to store the suggested activities for a trip", () => {
+    expect(trip1.suggestedActivities).to.deep.equal([]);
+    expect(trip2.suggestedActivities).to.deep.equal([]);
   });
 });
