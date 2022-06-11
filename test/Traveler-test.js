@@ -31,7 +31,7 @@ describe("Traveler", () => {
     expect(traveler2.id).to.equal(2);
   });
 
-  it.only("should be able to store a traveler name for multiple travlers", () => {
+  it("should be able to store a traveler name for multiple travlers", () => {
     expect(traveler1.name).to.equal("Ham Leadbeater");
     expect(traveler2.name).to.equal("Rachael Vaughten");
   });
@@ -41,10 +41,10 @@ describe("Traveler", () => {
     expect(traveler2.travelerType).to.equal("thrill-seeker");
   });
 
-  it("should be able to return only the first name for multiple users", () => {
-    const firstName1 = traveler1.returnFirstName();
-    const firstName2 = traveler2.returnFirstName();
-    expect(firstName1).to.equal("Luisa");
-    expect(firstName2).to.equal("Breanne");
+  it.only("should be able to return only the first name for multiple users", () => {
+    const firstName1 = traveler1.getFirstName();
+    const firstName2 = traveler2.getFirstName();
+    expect(firstName1).to.equal("Ham");
+    expect(firstName2).to.equal("Rachael");
   });
 });
