@@ -27,11 +27,11 @@ describe("Trip", () => {
     });
   });
 
-  it.only("should be a function", () => {
+  it("should be a function", () => {
     expect(Trip).to.be.a("function");
   });
 
-  it("should be able to instantiate multiple trips", () => {
+  it.only("should be able to instantiate multiple trips", () => {
     expect(trip1).to.be.an.instanceof(Trip);
     expect(trip2).to.be.an.instanceOf(Trip);
   });
