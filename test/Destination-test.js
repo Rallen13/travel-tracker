@@ -54,7 +54,7 @@ describe("Destination", () => {
     expect(destination2.estimatedFlightCostPerPerson).to.equal(780);
   });
 
-  it.only("should be able to store an image for a destination for multiple destinations", () => {
+  it("should be able to store an image for a destination for multiple destinations", () => {
     expect(destination1.image).to.equal(
       "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"
     );
@@ -63,23 +63,12 @@ describe("Destination", () => {
     );
   });
 
-  it("should be able to store the date for a destination", () => {
-    expect(destination1.date).to.equal("2022/09/16");
-    expect(destination2.date).to.equal("2022/10/04");
-  });
-
-  it("should be able to store the duration for a destination", () => {
-    expect(destination1.duration).to.equal(8);
-    expect(destination2.duration).to.equal(18);
-  });
-
-  it("should be able to store the status for a destination", () => {
-    expect(destination1.status).to.equal("approved");
-    expect(destination2.status).to.equal("approved");
-  });
-
-  it("should be able to store the suggested activities for a destination", () => {
-    expect(destination1.suggestedActivities).to.deep.equal([]);
-    expect(destination2.suggestedActivities).to.deep.equal([]);
+  it.only("should be able to store the alt text for an image for a destination for multiple destinations", () => {
+    expect(destination1.alt).to.equal(
+      "overview of city buildings with a clear sky"
+    );
+    expect(destination2.alt).to.equal(
+      "city with boats on the water during the day time"
+    );
   });
 });
