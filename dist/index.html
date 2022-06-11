@@ -1,16 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
-</head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Teko:wght@300;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Travel Tracker</title>
+  </head>
+  <body>
+    <nav>
+      <img src="./images/hiking_black_24dp.svg" alt="Travel Tracker icon" />
+      <h1>TRAVEL TRACKER</h1>
+    </nav>
+    <main>
+      <section class="left-column">
+        <h2>Welcome, Rachel!</h2>
+        <article class="user-article">
+          <h3>Today's Date</h3>
+          <p class="today-date">06/10/2022</p>
+        </article>
+        <article class="budget-article">
+          <h3>Annual Budget</h3>
+          <p class="budget-total">$12345</p>
+          <p class="bold">Travel Agent Fees</p>
+          <p class="budget-fees">$1982</p>
+        </article>
+      </section>
+      <section class="right-column trip-articles">
+        <article class="trip-article">
+          <img
+            src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1390&q=80"
+            alt="Hot air balloons"
+          />
+          <header>
+            <h3>Stockholm, Sweden</h3>
+            <h4>09/16/2022</h4>
+          </header>
+          <div class="content">
+            <span class="stat">
+              <p class="bold">Travelers:</p>
+              <p class="detail">3</p>
+            </span>
+            <span class="'stat">
+              <p class="bold">Nights:</p>
+              <p class="detail">8</p>
+            </span>
+          </div>
+          <footer>
+            <p class="bold">Trip Cost:</p>
+            <h5>$3000</h5>
+          </footer>
+        </article>
+      </section>
+    </main>
+    <script src="bundle.js"></script>
+  </body>
 </html>

@@ -1,6 +1,7 @@
+import "normalize.css";
 import "./css/styles.css";
 import apiCalls from "./apiCalls";
-import "./images/turing-logo.png";
+import "./images/hiking_black_24dp.svg";
 
 console.log("This is the JavaScript entry file - your code begins here.");
 
