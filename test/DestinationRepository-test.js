@@ -40,7 +40,7 @@ describe("Destination Repository", () => {
     expect(destinationRepository).to.be.an.instanceof(DestinationRepository);
   });
 
-  it.only("should be able to determine destination data by id for multiple destinations", () => {
+  it("should be able to determine destination data by id for multiple destinations", () => {
     let determineDestination1 = destinationRepository.findDestinationById(
       destination1.id
     );
