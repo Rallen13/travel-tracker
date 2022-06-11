@@ -25,11 +25,11 @@ describe("Destination", () => {
     });
   });
 
-  it.only("should be a function", () => {
+  it("should be a function", () => {
     expect(Destination).to.be.a("function");
   });
 
-  it("should be able to instantiate multiple destinations", () => {
+  it.only("should be able to instantiate multiple destinations", () => {
     expect(destination1).to.be.an.instanceof(Destination);
     expect(destination2).to.be.an.instanceOf(Destination);
   });
