@@ -31,11 +31,11 @@ describe("Trip Repository", () => {
     tripRepository = new TripRepository([trip1, trip2]);
   });
 
-  it.only("should be a function", function() {
+  it("should be a function", function() {
     expect(TripRepository).to.be.a("function");
   });
 
-  it("should be an instance of TripRepository", () => {
+  it.only("should be an instance of TripRepository", () => {
     expect(tripRepository).to.be.an.instanceof(TripRepository);
   });
 
