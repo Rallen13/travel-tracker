@@ -17,11 +17,11 @@ describe("Traveler", () => {
     });
   });
 
-  it.only("should be a function", () => {
+  it.skip("should be a function", () => {
     expect(Traveler).to.be.a("function");
   });
 
-  it("should be able to instantiate multiple users", () => {
+  it.only("should be able to instantiate multiple users", () => {
     expect(traveler1).to.be.an.instanceof(Traveler);
     expect(traveler2).to.be.an.instanceOf(Traveler);
   });
