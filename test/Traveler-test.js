@@ -21,19 +21,19 @@ describe("Traveler", () => {
     expect(Traveler).to.be.a("function");
   });
 
-  it("should be able to instantiate multiple users", () => {
+  it("should be able to instantiate multiple travelers", () => {
     expect(traveler1).to.be.an.instanceof(Traveler);
     expect(traveler2).to.be.an.instanceOf(Traveler);
   });
 
-  it.only("should be able to store a user id for multiple users", () => {
+  it("should be able to store a user id for multiple travelers", () => {
     expect(traveler1.id).to.equal(1);
     expect(traveler2.id).to.equal(2);
   });
 
-  it("should be able to store a user name for multiple users", () => {
-    expect(traveler1.name).to.equal("Luisa Hane");
-    expect(traveler2.name).to.equal("Breanne Fay");
+  it.only("should be able to store a user name for multiple travlers", () => {
+    expect(traveler1.name).to.equal("Ham Leadbeater");
+    expect(traveler2.name).to.equal("Rachael Vaughten");
   });
 
   it("should be able to store a user address for multiple users", () => {
