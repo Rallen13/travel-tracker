@@ -18,15 +18,16 @@
         <img src="./images/hiking_black_24dp.svg" alt="Travel Tracker icon" />
         <h1>TRAVEL TRACKER</h1>
       </span>
+      <button id="trip-form" type="button">BOOK A TRIP</button>
     </nav>
     <main>
       <section class="left-column">
         <h2 tabindex="0">Welcome<span class="traveler-name"></span></h2>
-        <article class="left-article" tabindex="0">
+        <article class="article" tabindex="0">
           <h3>Today's Date</h3>
           <p class="todays-date"></p>
         </article>
-        <article class="left-article" tabindex="0">
+        <article class="article" tabindex="0">
           <h3>Annual Cost</h3>
           <p class="total-cost"></p>
           <h3 class="padding-top">Included Agent Fees</h3>
@@ -35,9 +36,14 @@
       </section>
       <section class="right-column trip-articles"></section>
       <section class="trip-form hidden">
-        <form action="http://localhost:3001/api/v1/trips" method="post"></form>
-        <div class="divider"></div>
-        <button class="show-main">Cancel</button>
+        <article class="article">
+          <form
+            action="http://localhost:3001/api/v1/trips"
+            method="post"
+          ></form>
+          <div class="divider"></div>
+          <button class="show-main">Cancel</button>
+        </article>
       </section>
     </main>
     <script src="bundle.js"></script>
