@@ -15,7 +15,7 @@ class Trip {
     const lodgingTotal = this.duration * destination.estimatedLodgingCostPerDay;
     const flightTotal =
       this.travelers * destination.estimatedFlightCostPerPerson;
-    this.tripCost = parseInt(((lodgingTotal + flightTotal) * 1.1).toFixed(2));
+    this.tripCost = (lodgingTotal + flightTotal) * 1.1;
   };
 }
 

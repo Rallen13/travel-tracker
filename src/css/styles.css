@@ -63,8 +63,8 @@ article {
   min-width: 18rem;
 }
 
-.user-article,
-.budget-article {
+.date-article,
+.cost-article {
   background-color: #ffffff;
   padding: 2rem;
 }
@@ -113,7 +113,7 @@ article {
   font-weight: 700;
 }
 
-.budget-total,
+.total-cost,
 .detail {
   font-size: 2rem;
   margin: 0;

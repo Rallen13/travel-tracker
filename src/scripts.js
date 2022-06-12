@@ -7,27 +7,23 @@ import TripRepository from "./TripRepository";
 import DestinationRepository from "./DestinationRepository";
 import apiCalls from "./apiCalls";
 import "./images/hiking_black_24dp.svg";
+const dayjs = require("dayjs");
 
 // Query Selectors
-
-// Form Query Selectors
 const travelerName = document.querySelector(".traveler-name");
 const tripArticles = document.querySelector(".trip-articles");
+const todaysDate = document.querySelector(".todays-date");
+const totalCost = document.querySelector(".total-cost");
+const agentFees = document.querySelector(".agent-fees");
 
 // Class Instances
 
 //Global Variables
-let travelerRepo, tripRepo, destinationRepo, currentTraveler;
+let travelerRepo, tripRepo, destinationRepo, currentTraveler, today;
 
 // Functions
-const getRandomIndex = array => {
-  // console.log(array.length);
-  return Math.floor(Math.random() * array.length + 1);
-};
-
 const fetchApiCalls = userID => {
   apiCalls.fetchData().then(data => {
-    // console.log(data);
     let travelerData = data[0].travelers;
     let tripData = data[1].trips;
     let destinationData = data[2].destinations;
@@ -35,10 +31,8 @@ const fetchApiCalls = userID => {
     currentTraveler = travelerRepo.findTravelerById(3);
     tripRepo = new TripRepository(tripData);
     destinationRepo = new DestinationRepository(destinationData);
-    // console.log(travelerRepo);
-    // console.log(tripRepo);
-    // console.log(destinationRepo);
-    // console.log(currentTraveler);
+    today = dayjs().format("MM/DD/YYYY");
+    tripRepo.filterTripByUserId(currentTraveler.id);
     loadPage();
   });
 };
@@ -46,19 +40,32 @@ const fetchApiCalls = userID => {
 const loadPage = () => {
   displayTravelerName();
   displayTripArticles();
+  displayTodaysDate();
+  displayTotalCost();
+  displayAgentFees();
 };
 
 const displayTravelerName = () => {
-  travelerName.innerText = `${currentTraveler.getFirstName()}`;
+  travelerName.innerText = `, ${currentTraveler.getFirstName()}!`;
+};
+
+const displayTodaysDate = () => {
+  todaysDate.innerText = `${today}`;
+};
+
+const displayTotalCost = () => {
+  totalCost.innerText = `$${tripRepo.getAnnualCost().toFixed(2)}`;
+};
+
+const displayAgentFees = () => {
+  agentFees.innerText = `$${(tripRepo.getAnnualCost() * 0.1).toFixed(2)}`;
 };
 
 const displayTripArticles = () => {
-  const travelersTrips = tripRepo.filterTripByUserId(currentTraveler.id);
-
-  travelersTrips.forEach(trip => {
+  tripRepo.travelersTrips.forEach(trip => {
     const destination = destinationRepo.findDestinationById(trip.destinationID);
     trip.getTripCost(destination);
-    console.log(trip);
+    // console.log(trip);
     tripArticles.appendChild(generateTripArticle(trip, destination));
   });
 };
@@ -89,7 +96,7 @@ const generateTripArticle = (trip, tripDestination) => {
   </div>
   <footer>
     <p class="bold">Trip Cost:</p>
-    <p class="detail">$3000</p>
+    <p class="detail">$${trip.tripCost.toFixed(2)}</p>
   </footer>
   `;
 

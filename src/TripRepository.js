@@ -3,6 +3,7 @@ import Trip from "./Trip";
 class TripRepository {
   constructor(data) {
     this.data = this.mapTripData(data);
+    this.travelersTrips = [];
   }
 
   mapTripData = data => {
@@ -18,9 +19,16 @@ class TripRepository {
   };
 
   filterTripByUserId = id => {
-    return this.data.filter(trip => {
+    return (this.travelersTrips = this.data.filter(trip => {
       return trip.userID === id;
-    });
+    }));
+  };
+
+  getAnnualCost = () => {
+    return this.travelersTrips.reduce((acc, trip) => {
+      acc += trip.tripCost;
+      return acc;
+    }, 0);
   };
 }
 
