@@ -87,6 +87,7 @@ const generateTripArticle = (trip, tripDestination) => {
   let currentTripArticle = document.createElement("article");
   currentTripArticle.setAttribute("id", trip.id);
   currentTripArticle.setAttribute("class", "trip-article");
+  currentTripArticle.setAttribute("tabIndex", 0);
 
   currentTripArticle.innerHTML = `
   <img
@@ -100,16 +101,16 @@ const generateTripArticle = (trip, tripDestination) => {
   </header>
   <div class="content">
     <span class="stat">
-      <p>Travelers:</p>
       <p class="detail">${trip.travelers}</p>
+      <p>Travelers</p>
     </span>
     <span class="stat">
-      <p>Nights:</p>
       <p class="detail">${trip.duration}</p>
+      <p>Nights</p>
     </span>
   </div>
   <footer>
-    <p>Trip Cost:</p>
+    <p>Trip Cost</p>
     <p class="detail">$${trip.tripCost.toFixed(2)}</p>
   </footer>
   `;

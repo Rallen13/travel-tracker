@@ -14,24 +14,31 @@
   </head>
   <body>
     <nav>
-      <img src="./images/hiking_black_24dp.svg" alt="Travel Tracker icon" />
-      <h1>TRAVEL TRACKER</h1>
+      <span alt="Travel Tracker Logo" tabindex="0" class="nav-logo">
+        <img src="./images/hiking_black_24dp.svg" alt="Travel Tracker icon" />
+        <h1>TRAVEL TRACKER</h1>
+      </span>
     </nav>
     <main>
       <section class="left-column">
-        <h2>Welcome<span class="traveler-name"></span></h2>
-        <article class="left-article">
-          <h3>Today's Date:</h3>
+        <h2 tabindex="0">Welcome<span class="traveler-name"></span></h2>
+        <article class="left-article" tabindex="0">
+          <h3>Today's Date</h3>
           <p class="todays-date"></p>
         </article>
-        <article class="left-article">
-          <h3>Annual Cost:</h3>
+        <article class="left-article" tabindex="0">
+          <h3>Annual Cost</h3>
           <p class="total-cost"></p>
-          <h3 class="padding-top">Included Agent Fees:</h3>
+          <h3 class="padding-top">Included Agent Fees</h3>
           <p class="agent-fees"></p>
         </article>
       </section>
       <section class="right-column trip-articles"></section>
+      <section class="trip-form hidden">
+        <form action="http://localhost:3001/api/v1/trips" method="post"></form>
+        <div class="divider"></div>
+        <button class="show-main">Cancel</button>
+      </section>
     </main>
     <script src="bundle.js"></script>
   </body>
