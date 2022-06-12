@@ -13,6 +13,8 @@ class TravelerRepository {
 
   findTravelerById = id => {
     return this.data.find(traveler => {
+      // console.log(id);
+      // console.log(traveler);
       return traveler.id === id;
     });
   };
