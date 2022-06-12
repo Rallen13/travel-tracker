@@ -62,6 +62,12 @@ article {
   border-radius: 1rem;
 }
 
+.nav-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .left-column {
   display: flex;
   flex-flow: column wrap;
