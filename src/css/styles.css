@@ -90,15 +90,37 @@ article {
   border-radius: 1rem 1rem 0 0;
 }
 
-.trip-article header {
+.trip-header {
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trip-header h3 {
+  margin-bottom: 1rem;
+}
+
+.trip-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 1rem;
   padding: 1rem;
 }
 
-.trip-article .content {
+.stat {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
 }
 
 .trip-article footer {
@@ -117,4 +139,17 @@ article {
 .detail {
   font-size: 2rem;
   margin: 0;
+}
+
+.category {
+  background-color: red;
+  width: 100%;
+  margin-top: 0;
+  padding: 0.25rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 700;
+  color: #ffffff;
 }

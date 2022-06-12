@@ -9,6 +9,7 @@ class Trip {
     this.status = tripData.status;
     this.suggestedActivities = [];
     this.tripCost = 0;
+    this.category = "";
   }
 
   getTripCost = destination => {
