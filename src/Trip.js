@@ -8,7 +8,15 @@ class Trip {
     this.duration = tripData.duration;
     this.status = tripData.status;
     this.suggestedActivities = [];
+    this.tripCost = 0;
   }
+
+  getTripCost = destination => {
+    const lodgingTotal = this.duration * destination.estimatedLodgingCostPerDay;
+    const flightTotal =
+      this.travelers * destination.estimatedFlightCostPerPerson;
+    this.tripCost = (lodgingTotal + flightTotal) * 1.1;
+  };
 }
 
 export default Trip;
