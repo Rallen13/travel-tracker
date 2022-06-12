@@ -1,4 +1,5 @@
 import Trip from "./Trip";
+const dayjs = require("dayjs");
 
 class TripRepository {
   constructor(data) {
@@ -19,9 +20,13 @@ class TripRepository {
   };
 
   filterTripByUserId = id => {
-    return (this.travelersTrips = this.data.filter(trip => {
-      return trip.userID === id;
-    }));
+    return (this.travelersTrips = this.data
+      .filter(trip => {
+        return trip.userID === id;
+      })
+      .sort((a, b) => {
+        return dayjs(b.date) - dayjs(a.date);
+      }));
   };
 
   getAnnualCost = () => {

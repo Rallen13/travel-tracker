@@ -28,7 +28,7 @@ const fetchApiCalls = userID => {
     let tripData = data[1].trips;
     let destinationData = data[2].destinations;
     travelerRepo = new TravelerRepository(travelerData);
-    currentTraveler = travelerRepo.findTravelerById(3);
+    currentTraveler = travelerRepo.findTravelerById(44);
     tripRepo = new TripRepository(tripData);
     destinationRepo = new DestinationRepository(destinationData);
     today = dayjs().format("MM/DD/YYYY");

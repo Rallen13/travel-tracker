@@ -3,6 +3,7 @@ body {
     center fixed;
   background-size: cover;
   font-family: "Open Sans", sans-serif;
+  color: #333333;
 }
 
 h1,
@@ -142,7 +143,6 @@ article {
 }
 
 .category {
-  background-color: red;
   width: 100%;
   margin-top: 0;
   padding: 0.25rem;
@@ -152,4 +152,21 @@ article {
   border-radius: 0 0 0.5rem 0.5rem;
   font-weight: 700;
   color: #ffffff;
+}
+
+.past-category {
+  background-color: #fbcbb9;
+  color: #333333;
+}
+
+.upcoming-category {
+  background-color: #990649;
+}
+
+.present-category {
+  background-color: #521645;
+}
+
+.pending-category {
+  background-color: #eb6349;
 }
