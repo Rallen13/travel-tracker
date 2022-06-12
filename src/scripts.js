@@ -96,7 +96,7 @@ const generateTripArticle = (trip, tripDestination) => {
   <header class="trip-header">
     <p class='category ${trip.category}-category'>${trip.category}</p>
     <h3>${tripDestination.destination}</h3>
-    <h4>${trip.date}</h4>
+    <h4>${dayjs(trip.date).format("MM/DD/YYYY")}</h4>
   </header>
   <div class="content">
     <span class="stat">
