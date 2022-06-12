@@ -7,7 +7,7 @@ describe("Destination Repository", () => {
   let destination2;
   let destinationRepository;
   beforeEach(() => {
-    destination1 = new Destination({
+    destination1 = {
       id: 1,
       destination: "Lima, Peru",
       estimatedLodgingCostPerDay: 70,
@@ -15,9 +15,9 @@ describe("Destination Repository", () => {
       image:
         "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
       alt: "overview of city buildings with a clear sky"
-    });
+    };
 
-    destination2 = new Destination({
+    destination2 = {
       id: 2,
       destination: "Stockholm, Sweden",
       estimatedLodgingCostPerDay: 100,
@@ -25,7 +25,7 @@ describe("Destination Repository", () => {
       image:
         "https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
       alt: "city with boats on the water during the day time"
-    });
+    };
     destinationRepository = new DestinationRepository([
       destination1,
       destination2
@@ -47,7 +47,9 @@ describe("Destination Repository", () => {
     let determineDestination2 = destinationRepository.findDestinationById(
       destination2.id
     );
-    expect(determineDestination1).to.equal(destination1);
-    expect(determineDestination2).to.equal(destination2);
+    expect(determineDestination1).to.be.an.instanceof(Destination);
+    expect(determineDestination1.id).to.equal(destination1.id);
+    expect(determineDestination2).to.be.an.instanceof(Destination);
+    expect(determineDestination2.id).to.equal(destination2.id);
   });
 });

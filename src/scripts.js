@@ -56,10 +56,10 @@ const displayTripArticles = () => {
   const travelersTrips = tripRepo.filterTripByUserId(currentTraveler.id);
 
   travelersTrips.forEach(trip => {
-    const tripDestination = destinationRepo.findDestinationById(
-      trip.destinationID
-    );
-    tripArticles.appendChild(generateTripArticle(trip, tripDestination));
+    const destination = destinationRepo.findDestinationById(trip.destinationID);
+    trip.getTripCost(destination);
+    console.log(trip);
+    tripArticles.appendChild(generateTripArticle(trip, destination));
   });
 };
 
