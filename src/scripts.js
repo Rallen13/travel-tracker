@@ -28,7 +28,7 @@ const fetchApiCalls = userID => {
     let tripData = data[1].trips;
     let destinationData = data[2].destinations;
     travelerRepo = new TravelerRepository(travelerData);
-    currentTraveler = travelerRepo.findTravelerById(3);
+    currentTraveler = travelerRepo.findTravelerById(44);
     tripRepo = new TripRepository(tripData);
     destinationRepo = new DestinationRepository(destinationData);
     today = dayjs().format("MM/DD/YYYY");
@@ -65,9 +65,22 @@ const displayTripArticles = () => {
   tripRepo.travelersTrips.forEach(trip => {
     const destination = destinationRepo.findDestinationById(trip.destinationID);
     trip.getTripCost(destination);
-    // console.log(trip);
+    getTripCategory(trip);
+    console.log(trip);
     tripArticles.appendChild(generateTripArticle(trip, destination));
   });
+};
+
+const getTripCategory = trip => {
+  if (dayjs().isAfter(dayjs(trip.date))) {
+    return (trip.category = "past");
+  } else if (dayjs().isSame(dayjs(trip.date))) {
+    return (trip.category = "present");
+  } else if (dayjs().isBefore(dayjs(trip.date))) {
+    return (trip.category = "upcoming");
+  } else if (trip.status === "pending") {
+    return (trip.category = "pending");
+  }
 };
 
 const generateTripArticle = (trip, tripDestination) => {
@@ -80,22 +93,23 @@ const generateTripArticle = (trip, tripDestination) => {
     src=${tripDestination.image}
     alt=${tripDestination.alt}
   />
-  <header>
+  <header class="trip-header">
+    <p class='category ${trip.category}-category'>${trip.category}</p>
     <h3>${tripDestination.destination}</h3>
-    <h4>${trip.date}</h4>
+    <h4>${dayjs(trip.date).format("MM/DD/YYYY")}</h4>
   </header>
   <div class="content">
     <span class="stat">
-      <p class="bold">Travelers:</p>
+      <p>Travelers:</p>
       <p class="detail">${trip.travelers}</p>
     </span>
-    <span class="'stat">
-      <p class="bold">Nights:</p>
+    <span class="stat">
+      <p>Nights:</p>
       <p class="detail">${trip.duration}</p>
     </span>
   </div>
   <footer>
-    <p class="bold">Trip Cost:</p>
+    <p>Trip Cost:</p>
     <p class="detail">$${trip.tripCost.toFixed(2)}</p>
   </footer>
   `;
