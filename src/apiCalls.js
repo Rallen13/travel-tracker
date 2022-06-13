@@ -13,7 +13,7 @@ const fetchData = () => {
   ]);
 };
 
-const postData = (formData, fetchApiCalls) => {
+const postData = formData => {
   fetch("http://localhost:3001/api/v1/trips", {
     method: "POST",
     body: JSON.stringify(formData),
@@ -25,7 +25,6 @@ const postData = (formData, fetchApiCalls) => {
     .then(data => {
       console.log(data);
       console.log(`Trip is Booked`);
-      fetchApiCalls(formData.userID);
     })
     .catch(err => {
       console.log(err);

@@ -79,7 +79,6 @@ const displayTripArticles = () => {
     const destination = destinationRepo.findDestinationById(trip.destinationID);
     trip.getTripCost(destination);
     trip.getTripCategory(trip);
-
     tripArticles.appendChild(generateTripArticle(trip, destination));
   });
 };
@@ -171,12 +170,15 @@ const postTrip = event => {
   if (formData === undefined) {
     return;
   }
-  apiCalls.postData(formData, fetchApiCalls(currentTraveler.id));
+  apiCalls.postData(formData);
+  tripArticles.innerHTML = "";
+  fetchApiCalls(currentTraveler.id);
+  toggleForm();
 };
 
 // Event Listeners
 window.addEventListener("load", fetchApiCalls("load"));
 tripFormButton.addEventListener("click", toggleForm);
 cancelButton.addEventListener("click", toggleForm);
-bookNowButton.addEventListener("click", postTrip);
+bookNowButton.addEventListener("click", postTrip, true);
 //Form Event Listeners
