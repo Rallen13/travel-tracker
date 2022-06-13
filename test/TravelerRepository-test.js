@@ -26,15 +26,23 @@ describe("Traveler Repository", () => {
   });
 
   it("should be an instance of TravelerRepository", () => {
-    expect(travelerRepository).to.be.an.instanceof(TravelerRepository);
+    expect(travelerRepository).to.be.an.instanceOf(TravelerRepository);
+  });
+
+  it("should be able to store data for multiple travelers", () => {
+    expect(travelerRepository.data).to.deep.equal([traveler1, traveler2]);
+  });
+
+  it("should be able to mutate the date to store multiple instances of Traveler", () => {
+    travelerRepository.mapTravelerData();
+    expect(travelerRepository.data[0]).to.be.an.instanceOf(Traveler);
+    expect(travelerRepository.data[1]).to.be.an.instanceOf(Traveler);
   });
 
   it("should be able to determine traveler data by id for multiple travelers", () => {
     let determineTraveler1 = travelerRepository.findTravelerById(traveler1.id);
     let determineTraveler2 = travelerRepository.findTravelerById(traveler2.id);
-    expect(determineTraveler1).to.be.an.instanceof(Traveler);
-    expect(determineTraveler1.id).to.equal(traveler1.id);
-    expect(determineTraveler2).to.be.an.instanceof(Traveler);
-    expect(determineTraveler2.id).to.equal(traveler2.id);
+    expect(determineTraveler1).to.equal(traveler1);
+    expect(determineTraveler2).to.equal(traveler2);
   });
 });

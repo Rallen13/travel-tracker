@@ -31,9 +31,12 @@ const fetchApiCalls = userID => {
     let tripData = data[1].trips;
     let destinationData = data[2].destinations;
     travelerRepo = new TravelerRepository(travelerData);
+    travelerRepo.mapTravelerData();
     currentTraveler = travelerRepo.findTravelerById(44);
     tripRepo = new TripRepository(tripData);
+    tripRepo.mapTripData();
     destinationRepo = new DestinationRepository(destinationData);
+    destinationRepo.mapDestinationData();
     today = dayjs().format("MM/DD/YYYY");
     tripRepo.filterTripByUserId(currentTraveler.id);
     loadPage();
@@ -68,22 +71,10 @@ const displayTripArticles = () => {
   tripRepo.travelersTrips.forEach(trip => {
     const destination = destinationRepo.findDestinationById(trip.destinationID);
     trip.getTripCost(destination);
-    getTripCategory(trip);
-    console.log(trip);
+    trip.getTripCategory(trip);
+
     tripArticles.appendChild(generateTripArticle(trip, destination));
   });
-};
-
-const getTripCategory = trip => {
-  if (dayjs().isAfter(dayjs(trip.date))) {
-    return (trip.category = "past");
-  } else if (dayjs().isSame(dayjs(trip.date))) {
-    return (trip.category = "present");
-  } else if (dayjs().isBefore(dayjs(trip.date))) {
-    return (trip.category = "upcoming");
-  } else if (trip.status === "pending") {
-    return (trip.category = "pending");
-  }
 };
 
 const generateTripArticle = (trip, tripDestination) => {

@@ -2,13 +2,13 @@ import Destination from "./Destination";
 
 class DestinationRepository {
   constructor(data) {
-    this.data = this.mapDestinationData(data);
+    this.data = data;
   }
 
-  mapDestinationData = data => {
-    return data.map(destination => {
+  mapDestinationData = () => {
+    return (this.data = this.data.map(destination => {
       return new Destination(destination);
-    });
+    }));
   };
 
   findDestinationById = id => {

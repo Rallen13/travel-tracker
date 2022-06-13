@@ -40,6 +40,19 @@ describe("Destination Repository", () => {
     expect(destinationRepository).to.be.an.instanceof(DestinationRepository);
   });
 
+  it("should be able to store data for multiple destinations", () => {
+    expect(destinationRepository.data).to.deep.equal([
+      destination1,
+      destination2
+    ]);
+  });
+
+  it("should be able to mutate the date to store multiple instances of Destination", () => {
+    destinationRepository.mapDestinationData();
+    expect(destinationRepository.data[0]).to.be.an.instanceOf(Destination);
+    expect(destinationRepository.data[1]).to.be.an.instanceOf(Destination);
+  });
+
   it("should be able to determine destination data by id for multiple destinations", () => {
     let determineDestination1 = destinationRepository.findDestinationById(
       destination1.id
@@ -47,9 +60,7 @@ describe("Destination Repository", () => {
     let determineDestination2 = destinationRepository.findDestinationById(
       destination2.id
     );
-    expect(determineDestination1).to.be.an.instanceof(Destination);
-    expect(determineDestination1.id).to.equal(destination1.id);
-    expect(determineDestination2).to.be.an.instanceof(Destination);
-    expect(determineDestination2.id).to.equal(destination2.id);
+    expect(determineDestination1).to.equal(destination1);
+    expect(determineDestination2).to.equal(destination2);
   });
 });
