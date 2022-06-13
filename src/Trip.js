@@ -1,3 +1,5 @@
+const dayjs = require("dayjs");
+
 class Trip {
   constructor(tripData) {
     this.id = tripData.id;
@@ -17,6 +19,18 @@ class Trip {
     const flightTotal =
       this.travelers * destination.estimatedFlightCostPerPerson;
     this.tripCost = (lodgingTotal + flightTotal) * 1.1;
+  };
+
+  getTripCategory = () => {
+    if (this.status === "pending") {
+      return (this.category = "pending");
+    } else if (dayjs().isAfter(dayjs(this.date))) {
+      return (this.category = "past");
+    } else if (dayjs().isSame(dayjs(this.date))) {
+      return (this.category = "present");
+    } else if (dayjs().isBefore(dayjs(this.date))) {
+      return (this.category = "upcoming");
+    }
   };
 }
 

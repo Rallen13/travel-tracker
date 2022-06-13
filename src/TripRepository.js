@@ -3,14 +3,14 @@ const dayjs = require("dayjs");
 
 class TripRepository {
   constructor(data) {
-    this.data = this.mapTripData(data);
+    this.data = data;
     this.travelersTrips = [];
   }
 
-  mapTripData = data => {
-    return data.map(trip => {
+  mapTripData = () => {
+    return (this.data = this.data.map(trip => {
       return new Trip(trip);
-    });
+    }));
   };
 
   findTripById = id => {
