@@ -52,11 +52,15 @@ nav img {
 }
 
 button {
-  background-color: #eb6349;
+  background-color: #990649;
   border: none;
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
   color: #ffffff;
+}
+
+button:hover {
+  background-color: #521645;
 }
 
 main {
@@ -201,4 +205,14 @@ article {
 
 .pending-category {
   background-color: #eb6349;
+}
+
+.show-main-button {
+  border: 2px solid #990649;
+  color: #990649;
+  background-color: #ffffff;
+}
+
+.show-main-button:hover {
+  background-color: #fbdac5;
 }

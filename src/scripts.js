@@ -15,6 +15,9 @@ const tripArticles = document.querySelector(".trip-articles");
 const todaysDate = document.querySelector(".todays-date");
 const totalCost = document.querySelector(".total-cost");
 const agentFees = document.querySelector(".agent-fees");
+const tripFormButton = document.querySelector("#trip-form-button");
+const tripForm = document.querySelector(".trip-form");
+const showMainButton = document.querySelector(".show-main-button");
 
 // Class Instances
 
@@ -118,7 +121,14 @@ const generateTripArticle = (trip, tripDestination) => {
   return currentTripArticle;
 };
 
+const toggleForm = () => {
+  tripArticles.classList.toggle("hidden");
+  tripForm.classList.toggle("hidden");
+};
+
 // Event Listeners
 window.addEventListener("load", fetchApiCalls);
+tripFormButton.addEventListener("click", toggleForm);
+showMainButton.addEventListener("click", toggleForm);
 
 //Form Event Listeners
