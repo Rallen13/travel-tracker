@@ -16,8 +16,10 @@ const todaysDate = document.querySelector(".todays-date");
 const totalCost = document.querySelector(".total-cost");
 const agentFees = document.querySelector(".agent-fees");
 const tripFormButton = document.querySelector("#trip-form-button");
-const tripForm = document.querySelector(".trip-form");
-const showMainButton = document.querySelector(".show-main-button");
+const tripFormSection = document.querySelector(".trip-form-section");
+const cancelButton = document.querySelector(".cancel-button");
+const destinationInput = document.querySelector("#destinationID");
+const bookNowButton = document.querySelector(".book-now-button");
 
 // Class Instances
 
@@ -25,7 +27,7 @@ const showMainButton = document.querySelector(".show-main-button");
 let travelerRepo, tripRepo, destinationRepo, currentTraveler, today;
 
 // Functions
-const fetchApiCalls = userID => {
+const fetchApiCalls = () => {
   apiCalls.fetchData().then(data => {
     let travelerData = data[0].travelers;
     let tripData = data[1].trips;
@@ -49,6 +51,7 @@ const loadPage = () => {
   displayTodaysDate();
   displayTotalCost();
   displayAgentFees();
+  displayDestinationOptions();
 };
 
 const displayTravelerName = () => {
@@ -112,14 +115,34 @@ const generateTripArticle = (trip, tripDestination) => {
   return currentTripArticle;
 };
 
+const displayDestinationOptions = () => {
+  destinationRepo.data.forEach(destination => {
+    destinationInput.innerHTML += `<option value=${destination.id}>${destination.destination}</option>`;
+  });
+};
+
 const toggleForm = () => {
+  event.preventDefault();
   tripArticles.classList.toggle("hidden");
-  tripForm.classList.toggle("hidden");
+  tripFormSection.classList.toggle("hidden");
+};
+
+const setFormData = () => {
+  // what your formData should look like to POST
+  // {
+  //   id: 1,
+  //   userID: 1,
+  //   destinationID: 1,
+  //   travelers: 1,
+  //   date: "",
+  //   duration: 1,
+  //   status: "pending",
+  //   suggestedActivities: []
+  // };
 };
 
 // Event Listeners
 window.addEventListener("load", fetchApiCalls);
 tripFormButton.addEventListener("click", toggleForm);
-showMainButton.addEventListener("click", toggleForm);
-
+cancelButton.addEventListener("click", toggleForm);
 //Form Event Listeners

@@ -18,11 +18,12 @@
         <img src="./images/hiking_black_24dp.svg" alt="Travel Tracker icon" />
         <h1>TRAVEL TRACKER</h1>
       </span>
-      <button id="trip-form-button" type="button">BOOK A TRIP</button>
+      <button id="logout-button" type="button">LOGOUT</button>
     </nav>
     <main>
       <section class="left-column">
         <h2 tabindex="0">Welcome<span class="traveler-name"></span></h2>
+        <button id="trip-form-button" type="button">BOOK A TRIP</button>
         <article class="article" tabindex="0">
           <h3>Today's Date</h3>
           <p class="todays-date"></p>
@@ -34,15 +35,38 @@
           <p class="agent-fees"></p>
         </article>
       </section>
-      <section class="right-column trip-articles"></section>
-      <section class="trip-form hidden">
+      <section class="right-column trip-articles "></section>
+      <section class="trip-form-section hidden">
         <article class="article">
-          <form
-            action="http://localhost:3001/api/v1/trips"
-            method="post"
-          ></form>
-          <div class="divider"></div>
-          <button class="show-main-button">Cancel</button>
+          <form id="trip-form">
+            <h2>Book Your Trip</h2>
+            <ul>
+              <li>
+                <label for="destinationID">Destination</label>
+                <select id="destinationID" value="1"></select>
+              </li>
+              <li>
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date" />
+              </li>
+              <li>
+                <label for="duration">Duration</label>
+                <input type="number" name="duration" id="duration" value="1" />
+              </li>
+              <li>
+                <label for="travelers">Travelers</label>
+                <input
+                  type="number"
+                  name="travelers"
+                  id="travelers"
+                  value="1"
+                />
+              </li>
+            </ul>
+            <div class="divider"></div>
+            <button class="book-now-button">Book Now</button>
+            <button class="cancel-button">Cancel</button>
+          </form>
         </article>
       </section>
     </main>
