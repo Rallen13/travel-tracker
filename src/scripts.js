@@ -27,14 +27,18 @@ const bookNowButton = document.querySelector(".book-now-button");
 let travelerRepo, tripRepo, destinationRepo, currentTraveler, today;
 
 // Functions
-const fetchApiCalls = () => {
+const fetchApiCalls = userID => {
   apiCalls.fetchData().then(data => {
     let travelerData = data[0].travelers;
     let tripData = data[1].trips;
     let destinationData = data[2].destinations;
     travelerRepo = new TravelerRepository(travelerData);
     travelerRepo.mapTravelerData();
-    currentTraveler = travelerRepo.findTravelerById(44);
+    if (userID === "load") {
+      currentTraveler = travelerRepo.findTravelerById(44);
+    } else {
+      currentTraveler = travelerRepo.findTravelerById(userID);
+    }
     tripRepo = new TripRepository(tripData);
     tripRepo.mapTripData();
     destinationRepo = new DestinationRepository(destinationData);
@@ -127,22 +131,52 @@ const toggleForm = () => {
   tripFormSection.classList.toggle("hidden");
 };
 
-const setFormData = () => {
-  // what your formData should look like to POST
-  // {
-  //   id: 1,
-  //   userID: 1,
-  //   destinationID: 1,
-  //   travelers: 1,
-  //   date: "",
-  //   duration: 1,
-  //   status: "pending",
-  //   suggestedActivities: []
-  // };
+const setFormData = form => {
+  // console.log(event.target.form[0]);
+  // console.log(event.target.form[1]);
+  // console.log(event.target.form[2]);
+  // console.log(event.target.form[3]);
+  if (form[0].value === null) {
+    alert("Destination must be selected");
+  } else if (!dayjs(form[1].value).isValid()) {
+    alert("Date must be selected");
+  } else if (dayjs(form[1].value).isBefore(dayjs())) {
+    alert("Select a future date");
+  } else if (event.target.form[2].value === null) {
+    alert("Duration must be selected");
+  } else if (event.target.form[3].value === null) {
+    alert("Travelers must be selected");
+  } else {
+    return {
+      id: parseInt(tripRepo.data.length + 1),
+      userID: parseInt(currentTraveler.id),
+      destinationID: parseInt(form[0].value),
+      travelers: parseInt(form[3].value),
+      date: dayjs(form[1].value).format("YYYY/MM/DD"),
+      duration: parseInt(form[2].value),
+      status: "pending",
+      suggestedActivities: []
+    };
+  }
+};
+
+const postTrip = event => {
+  event.preventDefault();
+  console.log(event);
+  // console.log(event.target.form[0]);
+  // console.log(event.target.form[1]);
+  // console.log(event.target.form[2]);
+  // console.log(event.target.form[3]);
+  const formData = setFormData(event.target.form);
+  if (formData === undefined) {
+    return;
+  }
+  apiCalls.postData(formData, fetchApiCalls(currentTraveler.id));
 };
 
 // Event Listeners
-window.addEventListener("load", fetchApiCalls);
+window.addEventListener("load", fetchApiCalls("load"));
 tripFormButton.addEventListener("click", toggleForm);
 cancelButton.addEventListener("click", toggleForm);
+bookNowButton.addEventListener("click", postTrip);
 //Form Event Listeners
