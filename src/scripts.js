@@ -12,8 +12,8 @@ const dayjs = require("dayjs");
 
 // Query Selectors
 const travelerName = document.querySelector(".traveler-name");
-const rightColumn = document.querySelector(".right-column");
 const tripArticles = document.querySelector(".trip-articles");
+const leftColumn = document.querySelector(".left-column");
 const todaysDate = document.querySelector(".todays-date");
 const totalCost = document.querySelector(".total-cost");
 const agentFees = document.querySelector(".agent-fees");
@@ -25,7 +25,10 @@ const formDate = document.querySelector("date");
 const cancelButton = document.querySelector(".cancel-button");
 const destinationInput = document.querySelector("#destinationID");
 const bookNowButton = document.querySelector(".book-now-button");
-const loader = document.querySelector(".loader");
+const logoutButton = document.querySelector("#logout-button");
+const loginSection = document.querySelector(".login-section");
+const loginForm = document.querySelector("#login-form");
+const loginButton = document.querySelector(".login-button");
 
 // Class Instances
 
@@ -142,19 +145,20 @@ const displayDestinationOptions = () => {
 
 const viewForm = () => {
   event.preventDefault();
-  toggleForm();
+  toggleHidden(tripArticles);
+  toggleHidden(tripFormSection);
   date.value = dayjs().format("YYYY-MM-DD");
   displayEstimate();
 };
 
 const viewTrips = () => {
   event.preventDefault();
-  toggleForm();
+  toggleHidden(tripArticles);
+  toggleHidden(tripFormSection);
 };
 
-const toggleForm = () => {
-  tripArticles.classList.toggle("hidden");
-  tripFormSection.classList.toggle("hidden");
+const toggleHidden = element => {
+  element.classList.toggle("hidden");
 };
 
 const setFormData = form => {
@@ -204,7 +208,8 @@ const postTrip = event => {
     tripArticles.innerHTML = "";
     fetchApiCalls(currentTraveler.id);
     resetForm(event.target.form);
-    toggleForm(event);
+    toggleHidden(tripArticles);
+    toggleHidden(tripFormSection);
   });
 };
 
@@ -227,11 +232,29 @@ const getEstimate = () => {
   return tripEstimate.tripCost;
 };
 
+const logoutUser = () => {
+  event.preventDefault();
+  toggleHidden(loginSection);
+  toggleHidden(leftColumn);
+  toggleHidden(tripArticles);
+  toggleHidden(logoutButton);
+};
+
+const loginUser = () => {
+  event.preventDefault();
+  toggleHidden(loginSection);
+  toggleHidden(leftColumn);
+  toggleHidden(tripArticles);
+  toggleHidden(logoutButton);
+};
+
 // Event Listeners
 window.addEventListener("load", fetchApiCalls("load"));
 
 //Form Event Listeners
 tripFormButton.addEventListener("click", viewForm);
+logoutButton.addEventListener("click", logoutUser);
+loginButton.addEventListener("click", loginUser);
 cancelButton.addEventListener("click", viewTrips);
 bookNowButton.addEventListener("click", postTrip, true);
 tripForm.addEventListener("change", displayEstimate);
