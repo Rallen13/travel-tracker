@@ -16,12 +16,12 @@
 
 ## Abstract
 
-The _Travel Tracker_ application was designed to manage and track different trips for travelers. Building this application allowed me to build upon my current knowledge by implementing: 
+The _Travel Tracker_ application was designed to manage and track different trips for travelers. Building this application allowed me to build upon my current knowledge of: 
 
   - ES6 classes
-  - utilizing array and object prototype methods for data manipulation
-  - creating an easy to use and understand dashboard with clear UI/UX
-  - correctly utilzing FETCH and network requests to retrieve and `POST` data
+  - Utilizing array and object prototype methods for data manipulation
+  - Creating an easy to use and understand dashboard with clear UI/UX
+  - Correctly utilzing FETCH and network requests to retrieve and `POST` data
   - TDD with Mocha/Chai
   - Error handling and accessibility features
   - Login capability for a user with a username and password
@@ -45,10 +45,10 @@ The _Travel Tracker_ application was designed to manage and track different trip
 
 The goals for this project were to:
   
-   - Use OOP to drive the design of the application and the code
-   - Work with an API to send and receive data
-   - Solidify the code review process
-   - Create a robust test suite that thoroughly tests all functionality of a client-side application
+   - Use OOP to drive the design of the application and the code.
+   - Work with an API to send and receive data.
+   - Solidify the code review process.
+   - Create a robust test suite that thoroughly tests all functionality of a client-side application.
 
 This application was created using Webpack, which is a modular bundler used to group HTML, CSS, and JavaScript files into more efficient files for a browser to read.
 
@@ -56,11 +56,11 @@ This application utilizes NPM packages including `Normalize.css` and `Day.js`. T
 
 Test Driven Development was utilized in the development process for this application. Classes and corresponding repositories were built to accommodate the respective data types. Each class and repository were thoroughly tested using the mocha testing framework and the chai assertion library. 
 
-Fetch APIs and POSTs A user is able to create `POST` requests, and post their own pending trip to the local API as well as the DOM.  
+Fetch APIs and POSTs The application fetches data from a web API with a `GET` request and displays data for trips, destinations, and travelers. A user is able to create a `POST` request, and post their own pending trip data to the local API as well as the DOM.  
 
-Accesibility & Error Handling was implemented within the application and form. The application scored a 100% accessibility rating in a _Lighthouse Accessibility Audit_.
+Accesibility & Error Handling was implemented within the application and form. The application scored a 100% accessibility rating in a _Lighthouse Accessibility Audit_, is fully tabable, and can be used with a screen reader. 
 
-Login capability for a user with a username and password.
+Login capability for a user with a username and password to access a users scecific data.
 
 ## Future Features
 
