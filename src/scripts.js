@@ -153,14 +153,19 @@ const toggleForm = () => {
 };
 
 const setFormData = form => {
+  // if destinationID is null
   if (form[0].value === null) {
     alert("Destination must be selected");
+    // if date is valid
   } else if (!dayjs(form[1].value).isValid()) {
     alert("Date must be selected");
-  } else if (dayjs(form[1].value).isBefore(dayjs())) {
+    //if date selected is before today and not
+  } else if (dayjs(form[1].value).isBefore(dayjs().add(-1, "day"))) {
     alert("Select a future date");
+    //if duration is null
   } else if (event.target.form[2].value === null) {
     alert("Duration must be selected");
+    //if travelers is null
   } else if (event.target.form[3].value === null) {
     alert("Travelers must be selected");
   } else {
