@@ -1,4 +1,3 @@
-# Travel Tracker
 <img width="268" alt="Screen Shot 2022-06-14 at 11 44 05 AM" src="https://user-images.githubusercontent.com/98505112/173648081-42da2316-f2f7-41fa-8253-49105d20937a.png">
 
 
