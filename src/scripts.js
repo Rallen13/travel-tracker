@@ -133,11 +133,6 @@ const generateTripArticle = (trip, tripDestination) => {
 };
 
 const displayDestinationOptions = () => {
-  // const destinationsSorted = destinationRepo.data.sort((a, b) => {
-  //   console.log(a.destination);
-  //   return b.destination - a.destination;
-  // });
-  // console.log(destinationsSorted);
   destinationRepo.data.forEach(destination => {
     destinationInput.innerHTML += `<option value=${destination.id}>${destination.destination}</option>`;
   });
@@ -162,19 +157,14 @@ const toggleHidden = element => {
 };
 
 const setFormData = form => {
-  // if destinationID is null
   if (form[0].value === null) {
     alert("Destination must be selected");
-    // if date is valid
   } else if (!dayjs(form[1].value).isValid()) {
     alert("Date must be selected");
-    //if date selected is before today and not
   } else if (dayjs(form[1].value).isBefore(dayjs().add(-1, "day"))) {
     alert("Select a future date");
-    //if duration is null
   } else if (event.target.form[2].value === null) {
     alert("Duration must be selected");
-    //if travelers is null
   } else if (event.target.form[3].value === null) {
     alert("Travelers must be selected");
   } else {
@@ -240,12 +230,53 @@ const logoutUser = () => {
   toggleHidden(logoutButton);
 };
 
-const loginUser = () => {
+const validateUsername = username => {
+  //traveler50
+  const usernameWord = username.value.substring(0, 8);
+  const usernameID = username.value.substring(8);
+  const usernameSplit = console.log("validate username:", username.value);
+  if (username.value === "") {
+    alert("Username required");
+  } else if (
+    usernameWord === "traveler" &&
+    usernameID <= 50 &&
+    usernameID >= 1
+  ) {
+    return usernameID;
+  } else {
+    alert("Username not found!");
+  }
+};
+
+const validatePassword = password => {
+  //travel
+  console.log("validate password:", password.value);
+  if (password.value === "") {
+    alert("Password required");
+  } else if (password.value !== "travel") {
+    alert("Invalid password");
+  } else if (password.value === "travel") {
+    return true;
+  }
+};
+
+const loginUser = event => {
   event.preventDefault();
-  toggleHidden(loginSection);
-  toggleHidden(leftColumn);
-  toggleHidden(tripArticles);
-  toggleHidden(logoutButton);
+  const userID = validateUsername(event.target.form[0]);
+  console.log("UserID:", userID);
+  const passwordValid = validatePassword(event.target.form[1]);
+  console.log("Password:", passwordValid);
+  // if (formData === undefined) {
+  //   return;
+  // }
+  // apiCalls.fetchUser(formData).then(() => {
+  //   fetchApiCalls(currentTraveler.id);
+  //   resetForm(event.target.form);
+  //   toggleHidden(loginSection);
+  //   toggleHidden(leftColumn);
+  //   toggleHidden(tripArticles);
+  //   toggleHidden(logoutButton);
+  // });
 };
 
 // Event Listeners
