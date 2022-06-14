@@ -22,6 +22,7 @@ The _Travel Tracker_ application was designed to manage and track different trip
   - correctly utilzing FETCH and network requests to retrieve and `POST` data
   - TDD with Mocha/Chai
   - Error handling and accessibility features
+  - Login capability for a user with a username and password
 
 ## Illustrations
 
@@ -56,6 +57,8 @@ Test Driven Development was utilized in the development process for this applica
 Fetch APIs and POSTs A user is able to create `POST` requests, and post their own pending trip to the local API as well as the DOM.  
 
 Accesibility & Error Handling was implemented within the application and form. The application scored a 100% accessibility rating in a _Lighthouse Accessibility Audit_.
+
+Login capability for a user with a username and password.
 
 ## Future Features
 
