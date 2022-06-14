@@ -43,17 +43,14 @@ const fetchApiCalls = userID => {
     let destinationData = data[2].destinations;
     travelerRepo = new TravelerRepository(travelerData);
     travelerRepo.mapTravelerData();
-    if (userID === "load") {
-      currentTraveler = travelerRepo.findTravelerById(44);
-    } else {
-      currentTraveler = travelerRepo.findTravelerById(userID);
-    }
+    currentTraveler = travelerRepo.findTravelerById(userID);
+    console.log(userID);
     tripRepo = new TripRepository(tripData);
     tripRepo.mapTripData();
     destinationRepo = new DestinationRepository(destinationData);
     destinationRepo.mapDestinationData();
     today = dayjs().format("MM/DD/YYYY");
-    tripRepo.filterTripByUserId(currentTraveler.id);
+    tripRepo.filterTripByUserId(userID);
     loadPage();
   });
 };
@@ -188,6 +185,11 @@ const resetForm = form => {
   form[3].value = 1;
 };
 
+const resetLogin = form => {
+  form[0].value = "";
+  form[1].value = "";
+};
+
 const postTrip = event => {
   event.preventDefault();
   const formData = setFormData(event.target.form);
@@ -265,22 +267,20 @@ const loginUser = event => {
   console.log("UserID:", userID);
   const passwordValid = validatePassword(event.target.form[1]);
   console.log("Password:", passwordValid);
-  // if (formData === undefined) {
-  //   return;
-  // }
-  // apiCalls.fetchUser(formData).then(() => {
-  //   fetchApiCalls(currentTraveler.id);
-  //   resetForm(event.target.form);
-  //   toggleHidden(loginSection);
-  //   toggleHidden(leftColumn);
-  //   toggleHidden(tripArticles);
-  //   toggleHidden(logoutButton);
-  // });
+  if (userID === undefined || !passwordValid) {
+    return;
+  }
+  apiCalls.fetchUser(userID).then(data => {
+    fetchApiCalls(data[0].id);
+    resetLogin(event.target.form);
+    toggleHidden(loginSection);
+    toggleHidden(leftColumn);
+    toggleHidden(tripArticles);
+    toggleHidden(logoutButton);
+  });
 };
 
 // Event Listeners
-window.addEventListener("load", fetchApiCalls("load"));
-
 //Form Event Listeners
 tripFormButton.addEventListener("click", viewForm);
 logoutButton.addEventListener("click", logoutUser);
