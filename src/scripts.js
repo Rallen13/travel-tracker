@@ -44,13 +44,13 @@ const fetchApiCalls = userID => {
     travelerRepo = new TravelerRepository(travelerData);
     travelerRepo.mapTravelerData();
     currentTraveler = travelerRepo.findTravelerById(userID);
-    console.log(userID);
     tripRepo = new TripRepository(tripData);
     tripRepo.mapTripData();
     destinationRepo = new DestinationRepository(destinationData);
     destinationRepo.mapDestinationData();
     today = dayjs().format("MM/DD/YYYY");
     tripRepo.filterTripByUserId(userID);
+    console.log(tripRepo.travelersTrips);
     loadPage();
   });
 };
@@ -219,7 +219,6 @@ const getEstimate = () => {
   const destination = destinationRepo.findDestinationById(
     tripEstimate.destinationID
   );
-  console.log(destination);
   tripEstimate.getTripCost(destination);
   return tripEstimate.tripCost;
 };
@@ -236,7 +235,7 @@ const validateUsername = username => {
   //traveler50
   const usernameWord = username.value.substring(0, 8);
   const usernameID = username.value.substring(8);
-  const usernameSplit = console.log("validate username:", username.value);
+  console.log("validate username:", username.value);
   if (username.value === "") {
     alert("Username required");
   } else if (
@@ -271,6 +270,9 @@ const loginUser = event => {
     return;
   }
   apiCalls.fetchUser(userID).then(data => {
+    currentTraveler = new Traveler(data);
+    tripArticles.innerHTML = "";
+    console.log("fetchUser", data);
     fetchApiCalls(data[0].id);
     resetLogin(event.target.form);
     toggleHidden(loginSection);
