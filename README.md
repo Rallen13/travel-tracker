@@ -56,7 +56,7 @@ This application utilizes NPM packages including `Normalize.css` and `Day.js`. T
 
 Test Driven Development was utilized in the development process for this application. Classes and corresponding repositories were built to accommodate the respective data types. Each class and repository were thoroughly tested using the mocha testing framework and the chai assertion library. 
 
-Fetch APIs and POSTs The application fetches data from a web API with a `GET` request and displays data for trips, destinations, and travelers. A user is able to create a `POST` request, and post their own pending trip data to the local API as well as the DOM.  
+The application fetches data from a web API with a `GET` request and displays data for trips, destinations, and travelers. A user is able to create a `POST` request and post their own pending trip data to the local API as well as the DOM.  
 
 Accesibility & Error Handling was implemented within the application and form. The application scored a 100% accessibility rating in a _Lighthouse Accessibility Audit_, is fully tabable, and can be used with a screen reader. 
 
