@@ -130,6 +130,11 @@ const generateTripArticle = (trip, tripDestination) => {
 };
 
 const displayDestinationOptions = () => {
+  // const destinationsSorted = destinationRepo.data.sort((a, b) => {
+  //   console.log(a.destination);
+  //   return b.destination - a.destination;
+  // });
+  // console.log(destinationsSorted);
   destinationRepo.data.forEach(destination => {
     destinationInput.innerHTML += `<option value=${destination.id}>${destination.destination}</option>`;
   });
