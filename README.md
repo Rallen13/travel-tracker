@@ -82,13 +82,15 @@ Some future features that could be added to this application are:
 
 4. Run `npm install` in your terminal to install project dependencies.
 
-5. Go to this [repository](https://github.com/turingschool-examples/fitlit-api)  
+5. Run `npm start` in the terminal to see the application.
 
-6. Follow instructions in the Fitlit-api repository from the previous step. 
+6. Go to this [repository](https://github.com/turingschool-examples/travel-tracker-api)  
 
-7. Run `npm start` in the terminal to see the application. 
+7. Follow instructions in the TravelTracker-api repository from the previous step. 
 
-8. When finished with the application, be sure to type `Control + C` to stop running the Fitlip-api and this application. 
+8. Run `npm start` in the terminal to run the local API server.
+
+9. When finished with the application, be sure to type `Control + C` to stop running the TravelTracker-api and this application. 
 
 ## Contributor LinkedIn
 
