@@ -214,6 +214,17 @@ label {
   padding-top: 1rem;
 }
 
+.divider {
+  border-bottom: 1px solid #cccccc;
+  margin: auto;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.subtext {
+  font-size: 14px;
+}
+
 .category {
   width: 100%;
   margin-top: 0;

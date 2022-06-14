@@ -4,6 +4,7 @@ import "./css/styles.css";
 import Traveler from "./Traveler";
 import TravelerRepository from "./TravelerRepository";
 import TripRepository from "./TripRepository";
+import Trip from "./Trip";
 import DestinationRepository from "./DestinationRepository";
 import apiCalls from "./apiCalls";
 import "./images/hiking_black_24dp.svg";
@@ -18,6 +19,9 @@ const totalCost = document.querySelector(".total-cost");
 const agentFees = document.querySelector(".agent-fees");
 const tripFormButton = document.querySelector("#trip-form-button");
 const tripFormSection = document.querySelector(".trip-form-section");
+const tripForm = document.querySelector("#trip-form");
+const tripEstimate = document.querySelector(".trip-estimate");
+const formDate = document.querySelector("date");
 const cancelButton = document.querySelector(".cancel-button");
 const destinationInput = document.querySelector("#destinationID");
 const bookNowButton = document.querySelector(".book-now-button");
@@ -52,14 +56,12 @@ const fetchApiCalls = userID => {
 };
 
 const loadPage = () => {
-  // startLoader();
   displayTravelerName();
   displayTripArticles();
   displayTodaysDate();
   displayTotalCost();
   displayAgentFees();
   displayDestinationOptions();
-  // toggleTrips();
 };
 
 const displayTravelerName = () => {
@@ -85,6 +87,11 @@ const displayTripArticles = () => {
     trip.getTripCategory(trip);
     tripArticles.appendChild(generateTripArticle(trip, destination));
   });
+};
+
+const displayEstimate = () => {
+  const estimatedTrip = getEstimate();
+  tripEstimate.innerHTML = `$${estimatedTrip.toFixed(2)}`;
 };
 
 const generateTripArticle = (trip, tripDestination) => {
@@ -128,8 +135,19 @@ const displayDestinationOptions = () => {
   });
 };
 
-const toggleForm = () => {
+const viewForm = () => {
   event.preventDefault();
+  toggleForm();
+  date.value = dayjs().format("YYYY-MM-DD");
+  displayEstimate();
+};
+
+const viewTrips = () => {
+  event.preventDefault();
+  toggleForm();
+};
+
+const toggleForm = () => {
   tripArticles.classList.toggle("hidden");
   tripFormSection.classList.toggle("hidden");
 };
@@ -161,7 +179,7 @@ const setFormData = form => {
 
 const resetForm = form => {
   form[0].value = 1;
-  form[1].value = "";
+  form[1].value = dayjs().format("YYYY-MM-DD");
   form[2].value = 1;
   form[3].value = 1;
 };
@@ -176,14 +194,34 @@ const postTrip = event => {
     tripArticles.innerHTML = "";
     fetchApiCalls(currentTraveler.id);
     resetForm(event.target.form);
-    toggleForm();
+    toggleForm(event);
   });
+};
+
+const getEstimate = () => {
+  const tripEstimate = new Trip({
+    id: parseInt(tripRepo.data.length + 1),
+    userID: parseInt(currentTraveler.id),
+    destinationID: parseInt(tripForm[0].value),
+    travelers: parseInt(tripForm[3].value),
+    date: dayjs(tripForm[1].value).format("YYYY/MM/DD"),
+    duration: parseInt(tripForm[2].value),
+    status: "pending",
+    suggestedActivities: []
+  });
+  const destination = destinationRepo.findDestinationById(
+    tripEstimate.destinationID
+  );
+  console.log(destination);
+  tripEstimate.getTripCost(destination);
+  return tripEstimate.tripCost;
 };
 
 // Event Listeners
 window.addEventListener("load", fetchApiCalls("load"));
 
 //Form Event Listeners
-tripFormButton.addEventListener("click", toggleForm);
-cancelButton.addEventListener("click", toggleForm);
+tripFormButton.addEventListener("click", viewForm);
+cancelButton.addEventListener("click", viewTrips);
 bookNowButton.addEventListener("click", postTrip, true);
+tripForm.addEventListener("change", displayEstimate);
