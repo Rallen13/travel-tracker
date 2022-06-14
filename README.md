@@ -94,15 +94,15 @@ Some future features that could be added to this application are:
 
 ## Contributor LinkedIn
 
-- [Rachel Allen: LinkedIn](https://www.linkedin.com/in/rachel-lynn-allen/)  
+[Rachel Allen: LinkedIn](https://www.linkedin.com/in/rachel-lynn-allen/)  
  
 ## Contributor GitHub
 
-- [Rachel Allen: GitHub](https://github.com/Rallen13) 
+[Rachel Allen: GitHub](https://github.com/Rallen13) 
 
 ## Project Specs
 
-- The specs for this application can be found 
+The specs for this application can be found 
 [HERE](https://frontend.turing.edu/projects/travel-tracker.html) 
 
 ## Deployed Link
