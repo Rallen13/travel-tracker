@@ -249,7 +249,6 @@ const validateUsername = username => {
 };
 
 const validatePassword = password => {
-  //travel
   console.log("validate password:", password.value);
   if (password.value === "") {
     alert("Password required");
