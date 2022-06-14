@@ -4,6 +4,7 @@ import "./css/styles.css";
 import Traveler from "./Traveler";
 import TravelerRepository from "./TravelerRepository";
 import TripRepository from "./TripRepository";
+import Trip from "./Trip";
 import DestinationRepository from "./DestinationRepository";
 import apiCalls from "./apiCalls";
 import "./images/hiking_black_24dp.svg";
@@ -11,15 +12,20 @@ const dayjs = require("dayjs");
 
 // Query Selectors
 const travelerName = document.querySelector(".traveler-name");
+const rightColumn = document.querySelector(".right-column");
 const tripArticles = document.querySelector(".trip-articles");
 const todaysDate = document.querySelector(".todays-date");
 const totalCost = document.querySelector(".total-cost");
 const agentFees = document.querySelector(".agent-fees");
 const tripFormButton = document.querySelector("#trip-form-button");
 const tripFormSection = document.querySelector(".trip-form-section");
+const tripForm = document.querySelector("#trip-form");
+const tripEstimate = document.querySelector(".trip-estimate");
+const formDate = document.querySelector("date");
 const cancelButton = document.querySelector(".cancel-button");
 const destinationInput = document.querySelector("#destinationID");
 const bookNowButton = document.querySelector(".book-now-button");
+const loader = document.querySelector(".loader");
 
 // Class Instances
 
@@ -83,6 +89,11 @@ const displayTripArticles = () => {
   });
 };
 
+const displayEstimate = () => {
+  const estimatedTrip = getEstimate();
+  tripEstimate.innerHTML = `$${estimatedTrip.toFixed(2)}`;
+};
+
 const generateTripArticle = (trip, tripDestination) => {
   let currentTripArticle = document.createElement("article");
   currentTripArticle.setAttribute("id", trip.id);
@@ -119,30 +130,47 @@ const generateTripArticle = (trip, tripDestination) => {
 };
 
 const displayDestinationOptions = () => {
+  // const destinationsSorted = destinationRepo.data.sort((a, b) => {
+  //   console.log(a.destination);
+  //   return b.destination - a.destination;
+  // });
+  // console.log(destinationsSorted);
   destinationRepo.data.forEach(destination => {
     destinationInput.innerHTML += `<option value=${destination.id}>${destination.destination}</option>`;
   });
 };
 
-const toggleForm = () => {
+const viewForm = () => {
   event.preventDefault();
+  toggleForm();
+  date.value = dayjs().format("YYYY-MM-DD");
+  displayEstimate();
+};
+
+const viewTrips = () => {
+  event.preventDefault();
+  toggleForm();
+};
+
+const toggleForm = () => {
   tripArticles.classList.toggle("hidden");
   tripFormSection.classList.toggle("hidden");
 };
 
 const setFormData = form => {
-  // console.log(event.target.form[0]);
-  // console.log(event.target.form[1]);
-  // console.log(event.target.form[2]);
-  // console.log(event.target.form[3]);
+  // if destinationID is null
   if (form[0].value === null) {
     alert("Destination must be selected");
+    // if date is valid
   } else if (!dayjs(form[1].value).isValid()) {
     alert("Date must be selected");
-  } else if (dayjs(form[1].value).isBefore(dayjs())) {
+    //if date selected is before today and not
+  } else if (dayjs(form[1].value).isBefore(dayjs().add(-1, "day"))) {
     alert("Select a future date");
+    //if duration is null
   } else if (event.target.form[2].value === null) {
     alert("Duration must be selected");
+    //if travelers is null
   } else if (event.target.form[3].value === null) {
     alert("Travelers must be selected");
   } else {
@@ -159,26 +187,51 @@ const setFormData = form => {
   }
 };
 
+const resetForm = form => {
+  form[0].value = 1;
+  form[1].value = dayjs().format("YYYY-MM-DD");
+  form[2].value = 1;
+  form[3].value = 1;
+};
+
 const postTrip = event => {
   event.preventDefault();
-  console.log(event);
-  // console.log(event.target.form[0]);
-  // console.log(event.target.form[1]);
-  // console.log(event.target.form[2]);
-  // console.log(event.target.form[3]);
   const formData = setFormData(event.target.form);
   if (formData === undefined) {
     return;
   }
-  apiCalls.postData(formData);
-  tripArticles.innerHTML = "";
-  fetchApiCalls(currentTraveler.id);
-  toggleForm();
+  apiCalls.postData(formData).then(() => {
+    tripArticles.innerHTML = "";
+    fetchApiCalls(currentTraveler.id);
+    resetForm(event.target.form);
+    toggleForm(event);
+  });
+};
+
+const getEstimate = () => {
+  const tripEstimate = new Trip({
+    id: parseInt(tripRepo.data.length + 1),
+    userID: parseInt(currentTraveler.id),
+    destinationID: parseInt(tripForm[0].value),
+    travelers: parseInt(tripForm[3].value),
+    date: dayjs(tripForm[1].value).format("YYYY/MM/DD"),
+    duration: parseInt(tripForm[2].value),
+    status: "pending",
+    suggestedActivities: []
+  });
+  const destination = destinationRepo.findDestinationById(
+    tripEstimate.destinationID
+  );
+  console.log(destination);
+  tripEstimate.getTripCost(destination);
+  return tripEstimate.tripCost;
 };
 
 // Event Listeners
 window.addEventListener("load", fetchApiCalls("load"));
-tripFormButton.addEventListener("click", toggleForm);
-cancelButton.addEventListener("click", toggleForm);
-bookNowButton.addEventListener("click", postTrip, true);
+
 //Form Event Listeners
+tripFormButton.addEventListener("click", viewForm);
+cancelButton.addEventListener("click", viewTrips);
+bookNowButton.addEventListener("click", postTrip, true);
+tripForm.addEventListener("change", displayEstimate);

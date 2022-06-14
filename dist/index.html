@@ -39,7 +39,7 @@
       <section class="trip-form-section hidden">
         <article class="article">
           <form id="trip-form">
-            <h2>Book Your Trip</h2>
+            <h2>Adventure Awaits...</h2>
             <ul>
               <li>
                 <label for="destinationID">Destination</label>
@@ -51,7 +51,13 @@
               </li>
               <li>
                 <label for="duration">Duration</label>
-                <input type="number" name="duration" id="duration" value="1" />
+                <input
+                  type="number"
+                  name="duration"
+                  id="duration"
+                  value="1"
+                  min="1"
+                />
               </li>
               <li>
                 <label for="travelers">Travelers</label>
@@ -60,11 +66,16 @@
                   name="travelers"
                   id="travelers"
                   value="1"
+                  min="1"
                 />
               </li>
             </ul>
             <div class="divider"></div>
-            <button class="book-now-button">Book Now</button>
+            <h3>Estimated Cost</h3>
+            <p class="detail trip-estimate"></p>
+            <p class="subtext">Includes agent fees</p>
+            <div class="divider"></div>
+            <button class="book-now-button">Let's go!</button>
             <button class="cancel-button">Cancel</button>
           </form>
         </article>
