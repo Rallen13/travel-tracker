@@ -11,6 +11,7 @@ const dayjs = require("dayjs");
 
 // Query Selectors
 const travelerName = document.querySelector(".traveler-name");
+const rightColumn = document.querySelector(".right-column");
 const tripArticles = document.querySelector(".trip-articles");
 const todaysDate = document.querySelector(".todays-date");
 const totalCost = document.querySelector(".total-cost");
@@ -20,6 +21,7 @@ const tripFormSection = document.querySelector(".trip-form-section");
 const cancelButton = document.querySelector(".cancel-button");
 const destinationInput = document.querySelector("#destinationID");
 const bookNowButton = document.querySelector(".book-now-button");
+const loader = document.querySelector(".loader");
 
 // Class Instances
 
@@ -50,12 +52,14 @@ const fetchApiCalls = userID => {
 };
 
 const loadPage = () => {
+  // startLoader();
   displayTravelerName();
   displayTripArticles();
   displayTodaysDate();
   displayTotalCost();
   displayAgentFees();
   displayDestinationOptions();
+  // toggleTrips();
 };
 
 const displayTravelerName = () => {
@@ -131,10 +135,6 @@ const toggleForm = () => {
 };
 
 const setFormData = form => {
-  // console.log(event.target.form[0]);
-  // console.log(event.target.form[1]);
-  // console.log(event.target.form[2]);
-  // console.log(event.target.form[3]);
   if (form[0].value === null) {
     alert("Destination must be selected");
   } else if (!dayjs(form[1].value).isValid()) {
@@ -159,26 +159,31 @@ const setFormData = form => {
   }
 };
 
+const resetForm = form => {
+  form[0].value = 1;
+  form[1].value = "";
+  form[2].value = 1;
+  form[3].value = 1;
+};
+
 const postTrip = event => {
   event.preventDefault();
-  console.log(event);
-  // console.log(event.target.form[0]);
-  // console.log(event.target.form[1]);
-  // console.log(event.target.form[2]);
-  // console.log(event.target.form[3]);
   const formData = setFormData(event.target.form);
   if (formData === undefined) {
     return;
   }
-  apiCalls.postData(formData);
-  tripArticles.innerHTML = "";
-  fetchApiCalls(currentTraveler.id);
-  toggleForm();
+  apiCalls.postData(formData).then(() => {
+    tripArticles.innerHTML = "";
+    fetchApiCalls(currentTraveler.id);
+    resetForm(event.target.form);
+    toggleForm();
+  });
 };
 
 // Event Listeners
 window.addEventListener("load", fetchApiCalls("load"));
+
+//Form Event Listeners
 tripFormButton.addEventListener("click", toggleForm);
 cancelButton.addEventListener("click", toggleForm);
 bookNowButton.addEventListener("click", postTrip, true);
-//Form Event Listeners
