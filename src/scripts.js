@@ -263,16 +263,13 @@ const validatePassword = password => {
 const loginUser = event => {
   event.preventDefault();
   const userID = validateUsername(event.target.form[0]);
-  console.log("UserID:", userID);
   const passwordValid = validatePassword(event.target.form[1]);
-  console.log("Password:", passwordValid);
   if (userID === undefined || !passwordValid) {
     return;
   }
   apiCalls.fetchUser(userID).then(data => {
     currentTraveler = new Traveler(data);
     tripArticles.innerHTML = "";
-    console.log("fetchUser", data);
     fetchApiCalls(data[0].id);
     resetLogin(event.target.form);
     toggleHidden(loginSection);
