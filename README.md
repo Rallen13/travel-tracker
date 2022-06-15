@@ -28,7 +28,7 @@ The _Travel Tracker_ application was designed to manage and track different trip
 
 ## Illustrations
 
-[Travel Tracker Functionality](https://vimeo.com/720496619/caa558e85c)
+https://user-images.githubusercontent.com/98505112/173729446-f6a8773b-03df-4e72-aa34-52b8bc241cb3.mp4
 
 ## Technologies Used
 
