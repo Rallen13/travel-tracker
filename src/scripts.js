@@ -29,6 +29,7 @@ const logoutButton = document.querySelector("#logout-button");
 const loginSection = document.querySelector(".login-section");
 const loginForm = document.querySelector("#login-form");
 const loginButton = document.querySelector(".login-button");
+const estimateBox = document.querySelector(".estimate-box");
 
 // Class Instances
 
@@ -90,7 +91,11 @@ const displayTripArticles = () => {
 
 const displayEstimate = () => {
   const estimatedTrip = getEstimate();
-  tripEstimate.innerHTML = `$${estimatedTrip.toFixed(2)}`;
+  if (isNaN(estimatedTrip)) {
+    tripEstimate.innerHTML = `${estimatedTrip}`;
+  } else {
+    tripEstimate.innerHTML = `$${estimatedTrip.toFixed(2)}`;
+  }
 };
 
 const generateTripArticle = (trip, tripDestination) => {
@@ -219,7 +224,8 @@ const getEstimate = () => {
     tripEstimate.destinationID
   );
   tripEstimate.getTripCost(destination);
-  if (tripEstimate.tripCost === "NaN") {
+  console.log(tripEstimate.tripCost);
+  if (!tripEstimate.tripCost) {
     return "Can't calculate estimate. Please complete all inputs.";
   } else {
     return tripEstimate.tripCost;
