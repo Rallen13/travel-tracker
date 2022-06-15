@@ -153,15 +153,15 @@ const toggleHidden = element => {
 };
 
 const setFormData = form => {
-  if (form[0].value === null) {
+  if (form[0].value === "") {
     alert("Destination must be selected");
   } else if (!dayjs(form[1].value).isValid()) {
     alert("Date must be selected");
   } else if (dayjs(form[1].value).isBefore(dayjs().add(-1, "day"))) {
     alert("Select a future date");
-  } else if (event.target.form[2].value === null) {
+  } else if (event.target.form[2].value === "") {
     alert("Duration must be selected");
-  } else if (event.target.form[3].value === null) {
+  } else if (event.target.form[3].value === "") {
     alert("Travelers must be selected");
   } else {
     return {
@@ -219,7 +219,11 @@ const getEstimate = () => {
     tripEstimate.destinationID
   );
   tripEstimate.getTripCost(destination);
-  return tripEstimate.tripCost;
+  if (tripEstimate.tripCost === "NaN") {
+    return "Can't calculate estimate. Please complete all inputs.";
+  } else {
+    return tripEstimate.tripCost;
+  }
 };
 
 const logoutUser = () => {
