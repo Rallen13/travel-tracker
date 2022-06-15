@@ -31,7 +31,9 @@ class TripRepository {
 
   getAnnualCost = () => {
     return this.travelersTrips.reduce((acc, trip) => {
-      acc += trip.tripCost;
+      if (trip.date.includes("2022") && trip.status === "approved") {
+        acc += trip.tripCost;
+      }
       return acc;
     }, 0);
   };
