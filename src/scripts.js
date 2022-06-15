@@ -50,7 +50,6 @@ const fetchApiCalls = userID => {
     destinationRepo.mapDestinationData();
     today = dayjs().format("MM/DD/YYYY");
     tripRepo.filterTripByUserId(userID);
-    console.log(tripRepo.travelersTrips);
     loadPage();
   });
 };
@@ -232,10 +231,8 @@ const logoutUser = () => {
 };
 
 const validateUsername = username => {
-  //traveler50
   const usernameWord = username.value.substring(0, 8);
   const usernameID = username.value.substring(8);
-  console.log("validate username:", username.value);
   if (username.value === "") {
     alert("Username required");
   } else if (
@@ -250,7 +247,6 @@ const validateUsername = username => {
 };
 
 const validatePassword = password => {
-  console.log("validate password:", password.value);
   if (password.value === "") {
     alert("Password required");
   } else if (password.value !== "travel") {
