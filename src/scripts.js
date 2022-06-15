@@ -12,8 +12,8 @@ const dayjs = require("dayjs");
 
 // Query Selectors
 const travelerName = document.querySelector(".traveler-name");
-const rightColumn = document.querySelector(".right-column");
 const tripArticles = document.querySelector(".trip-articles");
+const leftColumn = document.querySelector(".left-column");
 const todaysDate = document.querySelector(".todays-date");
 const totalCost = document.querySelector(".total-cost");
 const agentFees = document.querySelector(".agent-fees");
@@ -25,7 +25,10 @@ const formDate = document.querySelector("date");
 const cancelButton = document.querySelector(".cancel-button");
 const destinationInput = document.querySelector("#destinationID");
 const bookNowButton = document.querySelector(".book-now-button");
-const loader = document.querySelector(".loader");
+const logoutButton = document.querySelector("#logout-button");
+const loginSection = document.querySelector(".login-section");
+const loginForm = document.querySelector("#login-form");
+const loginButton = document.querySelector(".login-button");
 
 // Class Instances
 
@@ -40,17 +43,14 @@ const fetchApiCalls = userID => {
     let destinationData = data[2].destinations;
     travelerRepo = new TravelerRepository(travelerData);
     travelerRepo.mapTravelerData();
-    if (userID === "load") {
-      currentTraveler = travelerRepo.findTravelerById(44);
-    } else {
-      currentTraveler = travelerRepo.findTravelerById(userID);
-    }
+    currentTraveler = travelerRepo.findTravelerById(userID);
     tripRepo = new TripRepository(tripData);
     tripRepo.mapTripData();
     destinationRepo = new DestinationRepository(destinationData);
     destinationRepo.mapDestinationData();
     today = dayjs().format("MM/DD/YYYY");
-    tripRepo.filterTripByUserId(currentTraveler.id);
+    tripRepo.filterTripByUserId(userID);
+    console.log(tripRepo.travelersTrips);
     loadPage();
   });
 };
@@ -130,11 +130,6 @@ const generateTripArticle = (trip, tripDestination) => {
 };
 
 const displayDestinationOptions = () => {
-  // const destinationsSorted = destinationRepo.data.sort((a, b) => {
-  //   console.log(a.destination);
-  //   return b.destination - a.destination;
-  // });
-  // console.log(destinationsSorted);
   destinationRepo.data.forEach(destination => {
     destinationInput.innerHTML += `<option value=${destination.id}>${destination.destination}</option>`;
   });
@@ -142,35 +137,31 @@ const displayDestinationOptions = () => {
 
 const viewForm = () => {
   event.preventDefault();
-  toggleForm();
+  toggleHidden(tripArticles);
+  toggleHidden(tripFormSection);
   date.value = dayjs().format("YYYY-MM-DD");
   displayEstimate();
 };
 
 const viewTrips = () => {
   event.preventDefault();
-  toggleForm();
+  toggleHidden(tripArticles);
+  toggleHidden(tripFormSection);
 };
 
-const toggleForm = () => {
-  tripArticles.classList.toggle("hidden");
-  tripFormSection.classList.toggle("hidden");
+const toggleHidden = element => {
+  element.classList.toggle("hidden");
 };
 
 const setFormData = form => {
-  // if destinationID is null
   if (form[0].value === null) {
     alert("Destination must be selected");
-    // if date is valid
   } else if (!dayjs(form[1].value).isValid()) {
     alert("Date must be selected");
-    //if date selected is before today and not
   } else if (dayjs(form[1].value).isBefore(dayjs().add(-1, "day"))) {
     alert("Select a future date");
-    //if duration is null
   } else if (event.target.form[2].value === null) {
     alert("Duration must be selected");
-    //if travelers is null
   } else if (event.target.form[3].value === null) {
     alert("Travelers must be selected");
   } else {
@@ -194,6 +185,11 @@ const resetForm = form => {
   form[3].value = 1;
 };
 
+const resetLogin = form => {
+  form[0].value = "";
+  form[1].value = "";
+};
+
 const postTrip = event => {
   event.preventDefault();
   const formData = setFormData(event.target.form);
@@ -204,7 +200,8 @@ const postTrip = event => {
     tripArticles.innerHTML = "";
     fetchApiCalls(currentTraveler.id);
     resetForm(event.target.form);
-    toggleForm(event);
+    toggleHidden(tripArticles);
+    toggleHidden(tripFormSection);
   });
 };
 
@@ -222,16 +219,71 @@ const getEstimate = () => {
   const destination = destinationRepo.findDestinationById(
     tripEstimate.destinationID
   );
-  console.log(destination);
   tripEstimate.getTripCost(destination);
   return tripEstimate.tripCost;
 };
 
-// Event Listeners
-window.addEventListener("load", fetchApiCalls("load"));
+const logoutUser = () => {
+  event.preventDefault();
+  toggleHidden(loginSection);
+  toggleHidden(leftColumn);
+  toggleHidden(tripArticles);
+  toggleHidden(logoutButton);
+};
 
+const validateUsername = username => {
+  //traveler50
+  const usernameWord = username.value.substring(0, 8);
+  const usernameID = username.value.substring(8);
+  console.log("validate username:", username.value);
+  if (username.value === "") {
+    alert("Username required");
+  } else if (
+    usernameWord === "traveler" &&
+    usernameID <= 50 &&
+    usernameID >= 1
+  ) {
+    return usernameID;
+  } else {
+    alert("Username not found!");
+  }
+};
+
+const validatePassword = password => {
+  console.log("validate password:", password.value);
+  if (password.value === "") {
+    alert("Password required");
+  } else if (password.value !== "travel") {
+    alert("Invalid password");
+  } else if (password.value === "travel") {
+    return true;
+  }
+};
+
+const loginUser = event => {
+  event.preventDefault();
+  const userID = validateUsername(event.target.form[0]);
+  const passwordValid = validatePassword(event.target.form[1]);
+  if (userID === undefined || !passwordValid) {
+    return;
+  }
+  apiCalls.fetchUser(userID).then(data => {
+    currentTraveler = new Traveler(data);
+    tripArticles.innerHTML = "";
+    fetchApiCalls(data[0].id);
+    resetLogin(event.target.form);
+    toggleHidden(loginSection);
+    toggleHidden(leftColumn);
+    toggleHidden(tripArticles);
+    toggleHidden(logoutButton);
+  });
+};
+
+// Event Listeners
 //Form Event Listeners
 tripFormButton.addEventListener("click", viewForm);
+logoutButton.addEventListener("click", logoutUser);
+loginButton.addEventListener("click", loginUser);
 cancelButton.addEventListener("click", viewTrips);
 bookNowButton.addEventListener("click", postTrip, true);
 tripForm.addEventListener("change", displayEstimate);

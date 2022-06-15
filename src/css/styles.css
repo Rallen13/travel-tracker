@@ -118,6 +118,15 @@ label {
   align-items: center;
 }
 
+.login-section {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+}
+
 .left-column {
   display: flex;
   flex-flow: column wrap;

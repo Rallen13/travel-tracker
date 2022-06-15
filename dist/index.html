@@ -18,10 +18,28 @@
         <img src="./images/hiking_black_24dp.svg" alt="Travel Tracker icon" />
         <h1>TRAVEL TRACKER</h1>
       </span>
-      <button id="logout-button" type="button">LOGOUT</button>
+      <button id="logout-button" type="button" class="hidden">LOGOUT</button>
     </nav>
     <main>
-      <section class="left-column">
+      <section class="login-section">
+        <article class="article">
+          <form id="login-form">
+            <h2>Welcome to Travel Tracker</h2>
+            <ul>
+              <li>
+                <label for="username">Username</label>
+                <input name="username" id="username" required />
+              </li>
+              <li>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required />
+              </li>
+            </ul>
+            <button class="login-button">Login</button>
+          </form>
+        </article>
+      </section>
+      <section class="left-column hidden">
         <h2 tabindex="0">Welcome<span class="traveler-name"></span></h2>
         <button id="trip-form-button" type="button">BOOK A TRIP</button>
         <article class="article" tabindex="0">
@@ -35,7 +53,7 @@
           <p class="agent-fees"></p>
         </article>
       </section>
-      <section class="right-column trip-articles "></section>
+      <section class="right-column trip-articles hidden"></section>
       <section class="trip-form-section hidden">
         <article class="article">
           <form id="trip-form">
